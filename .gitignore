@@ -1,0 +1,23 @@
+# Dependencies and temp test artifacts
+.taste-skill/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Python analysis scratch scripts (optional local scrapers)
+analyze*.py
+check_thumbs.py
+download_*.py
+fetch_*.py
+find_all_products.py
+show_card.py
+current_site.html
