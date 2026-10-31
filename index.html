@@ -4068,6 +4068,262 @@
             color: var(--color-text-main);
         }
 
+        /* 3B. Product Options Modal (Size, Weight, Color before Add-to-Cart Animation) */
+        .prod-opt-modal-card {
+            background-color: #ffffff;
+            border-radius: 22px;
+            border: 2px solid #10b981;
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 28px 60px -12px rgba(6, 78, 59, 0.45); /* taste-skill-ignore */
+        }
+
+        .prod-opt-header {
+            position: relative;
+            background-color: #064e3b;
+            color: #ffffff;
+            padding: 16px 20px;
+            border-bottom: 2px solid #047857;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .prod-opt-thumb {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+            background-color: #ffffff;
+            border: 2px solid #fde047;
+            overflow: hidden;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .prod-opt-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .prod-opt-head-info {
+            flex: 1;
+            min-width: 0;
+            padding-left: 36px;
+        }
+
+        .prod-opt-badge {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 800;
+            color: #fde047;
+            margin-bottom: 3px;
+        }
+
+        .prod-opt-title {
+            font-size: 16px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.35;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .prod-opt-close-btn {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            background-color: rgba(255, 255, 255, 0.14);
+            border: 1.5px solid rgba(255, 255, 255, 0.28);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 150ms ease, color 150ms ease;
+        }
+
+        .prod-opt-close-btn:hover {
+            background-color: #f59e0b;
+            color: #0f172a;
+            border-color: #f59e0b;
+        }
+
+        .prod-opt-body {
+            padding: 18px 20px 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .prod-opt-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .prod-opt-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--color-text-main);
+        }
+
+        .prod-opt-label-val {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .prod-opt-pills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .prod-opt-pill {
+            min-height: 44px;
+            padding: 7px 10px;
+            border-radius: 12px;
+            background-color: var(--color-surface-muted);
+            border: 1.5px solid var(--color-border);
+            color: var(--color-text-main);
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            text-align: center;
+            transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+        }
+
+        .prod-opt-pill:hover {
+            background-color: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .prod-opt-pill.active {
+            background-color: #ecfdf5;
+            border-color: var(--color-primary);
+            color: var(--color-primary-dark);
+        }
+
+        .prod-opt-pill-sub {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-muted);
+        }
+
+        .prod-opt-pill.active .prod-opt-pill-sub {
+            color: var(--color-primary);
+        }
+
+        .prod-color-pills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .prod-color-pill {
+            min-height: 44px;
+            padding: 8px 12px;
+            border-radius: 12px;
+            background-color: var(--color-surface-muted);
+            border: 1.5px solid var(--color-border);
+            color: var(--color-text-main);
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 150ms ease, border-color 150ms ease;
+        }
+
+        .prod-color-pill:hover {
+            background-color: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .prod-color-pill.active {
+            background-color: #ecfdf5;
+            border-color: var(--color-primary);
+            color: var(--color-primary-dark);
+        }
+
+        .prod-color-swatch {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 1.5px solid rgba(15, 23, 42, 0.18);
+        }
+
+        .prod-opt-footer {
+            background-color: #f8fafc;
+            border: 1.5px solid var(--color-border);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .prod-opt-price-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .prod-opt-price-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-muted);
+        }
+
+        .prod-opt-price-val {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--color-primary);
+            font-family: var(--font-num);
+        }
+
+        .btn-prod-opt-submit {
+            flex: 1;
+            min-height: 46px;
+            padding: 10px 18px;
+            background-color: var(--color-primary);
+            color: #ffffff;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 160ms ease, transform 150ms ease;
+        }
+
+        .btn-prod-opt-submit:hover {
+            background-color: #047857;
+            transform: translateY(-1px);
+        }
+
         /* 4. All Categories & Subcategories Mega-Modal */
         .all-cats-modal-card {
             background-color: #ffffff;
@@ -7340,6 +7596,112 @@
         </div>
     </div>
 
+    <!-- 16. PRODUCT OPTIONS SELECTION MODAL (WEIGHT, SIZE, COLOR) -->
+    <div class="site-modal-overlay" id="productOptionsModalOverlay" onclick="handleProductOptionsBackdrop(event)" data-ui aria-hidden="true">
+        <div class="prod-opt-modal-card" role="dialog" aria-modal="true" aria-labelledby="prodOptModalTitle">
+            <div class="prod-opt-header">
+                <button type="button" class="prod-opt-close-btn" onclick="closeProductOptionsModal()" aria-label="بستن پنجره انتخاب مشخصات محصول">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="prod-opt-thumb">
+                    <img id="prodOptThumbImg" src="assets/prod_rice.jpg" alt="تصویر محصول">
+                </div>
+                <div class="prod-opt-head-info">
+                    <span class="prod-opt-badge">انتخاب مشخصات محصول</span>
+                    <h3 class="prod-opt-title" id="prodOptModalTitle">برنج باسماتی طارم درجه یک</h3>
+                </div>
+            </div>
+
+            <div class="prod-opt-body">
+                <!-- 1. Weight Selection -->
+                <div class="prod-opt-group">
+                    <div class="prod-opt-label">
+                        <span>۱. انتخاب وزن محصول:</span>
+                        <span class="prod-opt-label-val" id="selectedWeightLabel">۵۰۰ گرم (استاندارد)</span>
+                    </div>
+                    <div class="prod-opt-pills" id="prodWeightPills" role="group" aria-label="انتخاب وزن محصول">
+                        <button type="button" class="prod-opt-pill" data-idx="0" onclick="selectProdOption('weight', 0)">
+                            <span>۲۵۰ گرم</span>
+                            <span class="prod-opt-pill-sub">تک‌نفره</span>
+                        </button>
+                        <button type="button" class="prod-opt-pill active" data-idx="1" onclick="selectProdOption('weight', 1)">
+                            <span>۵۰۰ گرم</span>
+                            <span class="prod-opt-pill-sub">استاندارد</span>
+                        </button>
+                        <button type="button" class="prod-opt-pill" data-idx="2" onclick="selectProdOption('weight', 2)">
+                            <span>۱ کیلوگرم</span>
+                            <span class="prod-opt-pill-sub">خانوادگی</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 2. Size Selection -->
+                <div class="prod-opt-group">
+                    <div class="prod-opt-label">
+                        <span>۲. انتخاب اندازه بسته‌بندی:</span>
+                        <span class="prod-opt-label-val" id="selectedSizeLabel">متوسط (Medium)</span>
+                    </div>
+                    <div class="prod-opt-pills" id="prodSizePills" role="group" aria-label="انتخاب اندازه محصول">
+                        <button type="button" class="prod-opt-pill" data-idx="0" onclick="selectProdOption('size', 0)">
+                            <span>کوچک (S)</span>
+                            <span class="prod-opt-pill-sub">پک کم‌جا</span>
+                        </button>
+                        <button type="button" class="prod-opt-pill active" data-idx="1" onclick="selectProdOption('size', 1)">
+                            <span>متوسط (M)</span>
+                            <span class="prod-opt-pill-sub">پک کلاسیک</span>
+                        </button>
+                        <button type="button" class="prod-opt-pill" data-idx="2" onclick="selectProdOption('size', 2)">
+                            <span>بزرگ (L)</span>
+                            <span class="prod-opt-pill-sub">پک مجلسی</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 3. Color / Package Style Selection -->
+                <div class="prod-opt-group">
+                    <div class="prod-opt-label">
+                        <span>۳. انتخاب رنگ / طرح بسته‌بندی:</span>
+                        <span class="prod-opt-label-val" id="selectedColorLabel">سبز زمردی</span>
+                    </div>
+                    <div class="prod-color-pills" id="prodColorPills" role="group" aria-label="انتخاب رنگ محصول">
+                        <button type="button" class="prod-color-pill active" data-idx="0" onclick="selectProdOption('color', 0)">
+                            <span class="prod-color-swatch" style="background-color: #059669;"></span>
+                            <span>سبز زمردی</span>
+                        </button>
+                        <button type="button" class="prod-color-pill" data-idx="1" onclick="selectProdOption('color', 1)">
+                            <span class="prod-color-swatch" style="background-color: #f59e0b;"></span>
+                            <span>طلایی زعفرانی</span>
+                        </button>
+                        <button type="button" class="prod-color-pill" data-idx="2" onclick="selectProdOption('color', 2)">
+                            <span class="prod-color-swatch" style="background-color: #e11d48;"></span>
+                            <span>قرمز یاقوتی</span>
+                        </button>
+                        <button type="button" class="prod-color-pill" data-idx="3" onclick="selectProdOption('color', 3)">
+                            <span class="prod-color-swatch" style="background-color: #1e3a8a;"></span>
+                            <span>سرمه‌ای سلطنتی</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Footer: Live Price & Confirm Add to Cart Button -->
+                <div class="prod-opt-footer">
+                    <div class="prod-opt-price-wrap">
+                        <span class="prod-opt-price-label">قیمت نهایی محصول:</span>
+                        <span class="prod-opt-price-val" id="prodOptLivePrice">14,50 €</span>
+                    </div>
+                    <button type="button" class="btn-prod-opt-submit" onclick="confirmProductOptionsAdd()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span>افزودن به سبد خرید</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notification (data-ui) -->
     <div class="toast-box" id="siteNotice">
         <span id="toastContent">محصول با موفقیت اضافه شد.</span>
@@ -7360,23 +7722,28 @@
             return item ? (item.quantity || 1) : 0;
         }
 
-        function pushToCart(name, price, img) {
-            let itemImg = img || 'assets/prod_saffron.jpg';
-            if (!img) {
-                if (name.includes('برنج')) itemImg = 'assets/prod_rice.jpg';
-                else if (name.includes('قورمه')) itemImg = 'assets/prod_ghormeh.jpg';
-                else if (name.includes('آجیل') || name.includes('پسته')) itemImg = 'assets/prod_nuts.jpg';
-                else if (name.includes('ترشی')) itemImg = 'assets/prod_torshi.jpg';
-                else if (name.includes('لواشک')) itemImg = 'assets/prod_lavashak.jpg';
-                else if (name.includes('گز') || name.includes('سوهان')) itemImg = 'assets/prod_gaz.jpg';
-                else if (name.includes('چای') || name.includes('نبات') || name.includes('گلاب')) itemImg = 'assets/prod_tea.jpg';
-            }
+        function resolveProductImage(name, img) {
+            if (img) return img;
+            if (name.includes('برنج')) return 'assets/prod_rice.jpg';
+            if (name.includes('قورمه')) return 'assets/prod_ghormeh.jpg';
+            if (name.includes('آجیل') || name.includes('پسته')) return 'assets/prod_nuts.jpg';
+            if (name.includes('ترشی')) return 'assets/prod_torshi.jpg';
+            if (name.includes('لواشک')) return 'assets/prod_lavashak.jpg';
+            if (name.includes('گز') || name.includes('سوهان')) return 'assets/prod_gaz.jpg';
+            if (name.includes('چای') || name.includes('نبات') || name.includes('گلاب')) return 'assets/prod_tea.jpg';
+            return 'assets/prod_saffron.jpg';
+        }
+
+        function pushToCart(name, price, img, variantSummary = '') {
+            const itemImg = resolveProductImage(name, img);
 
             const existing = shoppingCart.find(it => it.name === name);
             if (existing) {
                 existing.quantity = (existing.quantity || 1) + 1;
+                existing.price = price;
+                if (variantSummary) existing.variantSummary = variantSummary;
             } else {
-                shoppingCart.push({ id: Date.now(), name, price, img: itemImg, quantity: 1 });
+                shoppingCart.push({ id: Date.now(), name, price, img: itemImg, quantity: 1, variantSummary });
             }
 
             bumpCartBtn();
@@ -7409,9 +7776,138 @@
             }
         }
 
+        // Product Options Modal State (Weight, Size, Color)
+        const prodWeightOptions = [
+            { label: '۲۵۰ گرم', fullLabel: '۲۵۰ گرم (تک‌نفره)', mult: 0.65 },
+            { label: '۵۰۰ گرم', fullLabel: '۵۰۰ گرم (استاندارد)', mult: 1.0 },
+            { label: '۱ کیلوگرم', fullLabel: '۱ کیلوگرم (خانوادگی)', mult: 1.85 }
+        ];
+        const prodSizeOptions = [
+            { label: 'کوچک (S)', fullLabel: 'کوچک (Small)', add: 0 },
+            { label: 'متوسط (M)', fullLabel: 'متوسط (Medium)', add: 0 },
+            { label: 'بزرگ (L)', fullLabel: 'بزرگ (Large)', add: 1.20 }
+        ];
+        const prodColorOptions = [
+            { label: 'سبز زمردی' },
+            { label: 'طلایی زعفرانی' },
+            { label: 'قرمز یاقوتی' },
+            { label: 'سرمه‌ای سلطنتی' }
+        ];
+
+        let pendingProductSelection = {
+            btnElement: null,
+            name: '',
+            basePrice: 0,
+            img: '',
+            weightIdx: 1,
+            sizeIdx: 1,
+            colorIdx: 0
+        };
+
         function handleAddClick(btnElement, name, price, img) {
+            // Open Product Options Modal first so user selects Weight, Size, and Color
+            pendingProductSelection = {
+                btnElement: btnElement || null,
+                name: name,
+                basePrice: parseFloat(price) || 0,
+                img: resolveProductImage(name, img),
+                weightIdx: 1,
+                sizeIdx: 1,
+                colorIdx: 0
+            };
+
+            const titleEl = document.getElementById('prodOptModalTitle');
+            const thumbEl = document.getElementById('prodOptThumbImg');
+            if (titleEl) titleEl.textContent = name;
+            if (thumbEl) {
+                thumbEl.src = pendingProductSelection.img;
+                thumbEl.alt = name;
+            }
+
+            updateProductOptionsModalUI();
+
+            const overlay = document.getElementById('productOptionsModalOverlay');
+            if (overlay) {
+                overlay.classList.add('active');
+                overlay.setAttribute('aria-hidden', 'false');
+            }
+        }
+
+        function selectProdOption(type, idx) {
+            if (type === 'weight') pendingProductSelection.weightIdx = idx;
+            else if (type === 'size') pendingProductSelection.sizeIdx = idx;
+            else if (type === 'color') pendingProductSelection.colorIdx = idx;
+            updateProductOptionsModalUI();
+        }
+
+        function getCalculatedOptionPrice() {
+            const w = prodWeightOptions[pendingProductSelection.weightIdx] || prodWeightOptions[1];
+            const s = prodSizeOptions[pendingProductSelection.sizeIdx] || prodSizeOptions[1];
+            const raw = (pendingProductSelection.basePrice * w.mult) + s.add;
+            return Math.max(0.5, parseFloat(raw.toFixed(2)));
+        }
+
+        function updateProductOptionsModalUI() {
+            const w = prodWeightOptions[pendingProductSelection.weightIdx] || prodWeightOptions[1];
+            const s = prodSizeOptions[pendingProductSelection.sizeIdx] || prodSizeOptions[1];
+            const c = prodColorOptions[pendingProductSelection.colorIdx] || prodColorOptions[0];
+
+            const wLabel = document.getElementById('selectedWeightLabel');
+            const sLabel = document.getElementById('selectedSizeLabel');
+            const cLabel = document.getElementById('selectedColorLabel');
+            const priceEl = document.getElementById('prodOptLivePrice');
+
+            if (wLabel) wLabel.textContent = w.fullLabel;
+            if (sLabel) sLabel.textContent = s.fullLabel;
+            if (cLabel) cLabel.textContent = c.label;
+
+            document.querySelectorAll('#prodWeightPills .prod-opt-pill').forEach((btn, i) => {
+                btn.classList.toggle('active', i === pendingProductSelection.weightIdx);
+            });
+            document.querySelectorAll('#prodSizePills .prod-opt-pill').forEach((btn, i) => {
+                btn.classList.toggle('active', i === pendingProductSelection.sizeIdx);
+            });
+            document.querySelectorAll('#prodColorPills .prod-color-pill').forEach((btn, i) => {
+                btn.classList.toggle('active', i === pendingProductSelection.colorIdx);
+            });
+
+            const finalPrice = getCalculatedOptionPrice();
+            if (priceEl) {
+                priceEl.textContent = finalPrice.toFixed(2).replace('.', ',') + ' €';
+            }
+        }
+
+        function closeProductOptionsModal() {
+            const overlay = document.getElementById('productOptionsModalOverlay');
+            if (!overlay) return;
+            overlay.classList.remove('active');
+            overlay.setAttribute('aria-hidden', 'true');
+        }
+
+        function handleProductOptionsBackdrop(event) {
+            if (event.target === document.getElementById('productOptionsModalOverlay')) {
+                closeProductOptionsModal();
+            }
+        }
+
+        function confirmProductOptionsAdd() {
+            const { btnElement, name, img, weightIdx, sizeIdx, colorIdx } = pendingProductSelection;
+            const w = prodWeightOptions[weightIdx] || prodWeightOptions[1];
+            const s = prodSizeOptions[sizeIdx] || prodSizeOptions[1];
+            const c = prodColorOptions[colorIdx] || prodColorOptions[0];
+            const finalPrice = getCalculatedOptionPrice();
+            const variantSummary = `${w.label} · ${s.label} · ${c.label}`;
+
+            // 1. Close the Product Options Modal
+            closeProductOptionsModal();
+
+            // 2. Run the Dribbble button animation on the clicked button
+            runButtonCartAnimation(btnElement, name, finalPrice, img, variantSummary);
+        }
+
+        function runButtonCartAnimation(btnElement, name, price, img, variantSummary = '') {
             if (!btnElement) {
-                pushToCart(name, price, img);
+                pushToCart(name, price, img, variantSummary);
                 return;
             }
 
@@ -7445,7 +7941,7 @@
             // Add item to cart, bump badge, and show toast notification.
             // (syncCardSteppers will preserve this button while is-animating is active)
             setTimeout(() => {
-                pushToCart(name, price, img);
+                pushToCart(name, price, img, variantSummary);
             }, 780);
 
             // Step 2: Keep the "اضافه شد" success state comfortably visible for ~1.3s (until 2100ms)
@@ -7545,7 +8041,7 @@
                         row.innerHTML = `
                             <div class="cart-row-thumb">${imgTag}</div>
                             <div class="cart-row-info">
-                                <div class="cart-row-title">${item.name}</div>
+                                <div class="cart-row-title">${item.name}</div>${item.variantSummary ? `<div style="font-size:12px; color:#059669; font-weight:700; margin-bottom:2px;">${item.variantSummary}</div>` : ""}
                                 <div class="cart-row-price">${rowTotal} € <span style="font-size:13px; color:#64748b; font-weight:normal;">(${unitPrice} € × ${item.quantity})</span></div>
                             </div>
                             <div class="card-stepper-wrap" data-ui style="margin-inline-start:auto; margin-inline-end:8px; padding:2px 4px; width:auto; height:36px;">
@@ -9461,6 +9957,7 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeLocationModal();
+                closeProductOptionsModal();
                 toggleAllCategoriesModal(false);
                 const menu = document.getElementById('langDropdownMenu');
                 if (menu) menu.classList.remove('is-open');
