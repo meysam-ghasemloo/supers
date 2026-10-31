@@ -4231,26 +4231,73 @@
             color: var(--color-primary);
         }
 
+        /* Color Selection Horizontal Slider */
+        .prod-color-slider-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .prod-color-nav-btn {
+            width: 34px;
+            height: 34px;
+            min-width: 34px;
+            border-radius: var(--radius-full);
+            background-color: #ffffff;
+            border: 1.5px solid var(--color-border);
+            color: var(--color-text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+        }
+
+        .prod-color-nav-btn:hover {
+            background-color: var(--color-primary-soft);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
         .prod-color-pills {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            align-items: center;
             gap: 8px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 2px 2px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .prod-color-pills::-webkit-scrollbar {
+            display: none;
         }
 
         .prod-color-pill {
+            flex: 0 0 auto;
+            min-width: 136px;
             min-height: 44px;
-            padding: 8px 12px;
-            border-radius: 12px;
+            padding: 8px 14px;
+            border-radius: var(--radius-full);
             background-color: var(--color-surface-muted);
             border: 1.5px solid var(--color-border);
             color: var(--color-text-main);
             font-size: 13px;
             font-weight: 800;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            transition: background-color 150ms ease, border-color 150ms ease;
+            scroll-snap-align: start;
+            white-space: nowrap;
+            transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
         }
 
         .prod-color-pill:hover {
@@ -4265,11 +4312,40 @@
         }
 
         .prod-color-swatch {
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             flex-shrink: 0;
-            border: 1.5px solid rgba(15, 23, 42, 0.18);
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 0 1.5px rgba(15, 23, 42, 0.22); /* taste-skill-ignore */
+        }
+
+        .prod-color-pill.active .prod-color-swatch {
+            box-shadow: 0 0 0 2px var(--color-primary); /* taste-skill-ignore */
+        }
+
+        .prod-color-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 4px;
+        }
+
+        .prod-color-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: var(--radius-full);
+            background-color: #cbd5e1;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: width 180ms ease, background-color 180ms ease;
+        }
+
+        .prod-color-dot.active {
+            width: 18px;
+            background-color: var(--color-primary);
         }
 
         .prod-opt-footer {
@@ -7657,29 +7733,58 @@
                     </div>
                 </div>
 
-                <!-- 3. Color / Package Style Selection -->
+                <!-- 3. Color / Package Style Selection (Horizontal Slider) -->
                 <div class="prod-opt-group">
                     <div class="prod-opt-label">
-                        <span>۳. انتخاب رنگ / طرح بسته‌بندی:</span>
+                        <span>۳. انتخاب رنگ / طرح بسته‌بندی (اسلایدر):</span>
                         <span class="prod-opt-label-val" id="selectedColorLabel">سبز زمردی</span>
                     </div>
-                    <div class="prod-color-pills" id="prodColorPills" role="group" aria-label="انتخاب رنگ محصول">
-                        <button type="button" class="prod-color-pill active" data-idx="0" onclick="selectProdOption('color', 0)">
-                            <span class="prod-color-swatch" style="background-color: #059669;"></span>
-                            <span>سبز زمردی</span>
+                    <div class="prod-color-slider-wrap" data-ui="slider">
+                        <button type="button" class="prod-color-nav-btn" onclick="slideProdColorTrack(1)" aria-label="رنگ‌های قبلی" title="مشاهده رنگ‌های قبلی">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
                         </button>
-                        <button type="button" class="prod-color-pill" data-idx="1" onclick="selectProdOption('color', 1)">
-                            <span class="prod-color-swatch" style="background-color: #f59e0b;"></span>
-                            <span>طلایی زعفرانی</span>
+                        <div class="prod-color-pills" id="prodColorPills" role="group" aria-label="اسلایدر انتخاب رنگ محصول">
+                            <button type="button" class="prod-color-pill active" data-idx="0" onclick="selectProdOption('color', 0)">
+                                <span class="prod-color-swatch" style="background-color: #059669;"></span>
+                                <span>سبز زمردی</span>
+                            </button>
+                            <button type="button" class="prod-color-pill" data-idx="1" onclick="selectProdOption('color', 1)">
+                                <span class="prod-color-swatch" style="background-color: #f59e0b;"></span>
+                                <span>طلایی زعفرانی</span>
+                            </button>
+                            <button type="button" class="prod-color-pill" data-idx="2" onclick="selectProdOption('color', 2)">
+                                <span class="prod-color-swatch" style="background-color: #e11d48;"></span>
+                                <span>قرمز یاقوتی</span>
+                            </button>
+                            <button type="button" class="prod-color-pill" data-idx="3" onclick="selectProdOption('color', 3)">
+                                <span class="prod-color-swatch" style="background-color: #1e3a8a;"></span>
+                                <span>سرمه‌ای سلطنتی</span>
+                            </button>
+                            <button type="button" class="prod-color-pill" data-idx="4" onclick="selectProdOption('color', 4)">
+                                <span class="prod-color-swatch" style="background-color: #0d9488;"></span>
+                                <span>فیروزه‌ای نیشابور</span>
+                            </button>
+                            <button type="button" class="prod-color-pill" data-idx="5" onclick="selectProdOption('color', 5)">
+                                <span class="prod-color-swatch" style="background-color: #9f1239;"></span>
+                                <span>زرشکی خراسان</span>
+                            </button>
+                            <button type="button" class="prod-color-pill" data-idx="6" onclick="selectProdOption('color', 6)">
+                                <span class="prod-color-swatch" style="background-color: #c2410c;"></span>
+                                <span>مسی سنتی</span>
+                            </button>
+                        </div>
+                        <button type="button" class="prod-color-nav-btn" onclick="slideProdColorTrack(-1)" aria-label="رنگ‌های بعدی" title="مشاهده رنگ‌های بعدی">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
                         </button>
-                        <button type="button" class="prod-color-pill" data-idx="2" onclick="selectProdOption('color', 2)">
-                            <span class="prod-color-swatch" style="background-color: #e11d48;"></span>
-                            <span>قرمز یاقوتی</span>
-                        </button>
-                        <button type="button" class="prod-color-pill" data-idx="3" onclick="selectProdOption('color', 3)">
-                            <span class="prod-color-swatch" style="background-color: #1e3a8a;"></span>
-                            <span>سرمه‌ای سلطنتی</span>
-                        </button>
+                    </div>
+                    <div class="prod-color-dots" id="prodColorDots" aria-label="نشانگر اسلایدر رنگ">
+                        <span class="prod-color-dot active" onclick="selectProdOption('color', 0)" title="رنگ ۱"></span>
+                        <span class="prod-color-dot" onclick="selectProdOption('color', 1)" title="رنگ ۲"></span>
+                        <span class="prod-color-dot" onclick="selectProdOption('color', 2)" title="رنگ ۳"></span>
+                        <span class="prod-color-dot" onclick="selectProdOption('color', 3)" title="رنگ ۴"></span>
+                        <span class="prod-color-dot" onclick="selectProdOption('color', 4)" title="رنگ ۵"></span>
+                        <span class="prod-color-dot" onclick="selectProdOption('color', 5)" title="رنگ ۶"></span>
+                        <span class="prod-color-dot" onclick="selectProdOption('color', 6)" title="رنگ ۷"></span>
                     </div>
                 </div>
 
@@ -7791,8 +7896,17 @@
             { label: 'سبز زمردی' },
             { label: 'طلایی زعفرانی' },
             { label: 'قرمز یاقوتی' },
-            { label: 'سرمه‌ای سلطنتی' }
+            { label: 'سرمه‌ای سلطنتی' },
+            { label: 'فیروزه‌ای نیشابور' },
+            { label: 'زرشکی خراسان' },
+            { label: 'مسی سنتی' }
         ];
+
+        function slideProdColorTrack(direction) {
+            const track = document.getElementById('prodColorPills');
+            if (!track) return;
+            track.scrollBy({ left: direction * 150, behavior: 'smooth' });
+        }
 
         let pendingProductSelection = {
             btnElement: null,
@@ -7868,7 +7982,14 @@
                 btn.classList.toggle('active', i === pendingProductSelection.sizeIdx);
             });
             document.querySelectorAll('#prodColorPills .prod-color-pill').forEach((btn, i) => {
-                btn.classList.toggle('active', i === pendingProductSelection.colorIdx);
+                const isActive = (i === pendingProductSelection.colorIdx);
+                btn.classList.toggle('active', isActive);
+                if (isActive) {
+                    btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            });
+            document.querySelectorAll('#prodColorDots .prod-color-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === pendingProductSelection.colorIdx);
             });
 
             const finalPrice = getCalculatedOptionPrice();
