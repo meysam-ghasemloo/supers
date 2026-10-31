@@ -879,7 +879,9 @@
             font-size: 17.5px;
             font-weight: 800;
             line-height: 1.35;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            margin-left: 44px;
+            max-width: calc(100% - 48px);
         }
 
         .promo-badge-en {
@@ -2328,7 +2330,9 @@
             font-size: 13.5px;
             font-weight: 800;
             color: #065f46;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            margin-left: 44px;
+            max-width: calc(100% - 48px);
         }
 
         .calc-input-box {
@@ -2659,7 +2663,9 @@
             gap: 10px;
             font-size: 13.5px;
             color: #e2e8f0;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            margin-left: 44px;
+            max-width: calc(100% - 48px);
         }
 
         .contact-entry svg {
@@ -2845,7 +2851,9 @@
             font-size: 13px;
             color: var(--color-primary);
             font-weight: 800;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            margin-left: 44px;
+            max-width: calc(100% - 48px);
         }
 
         .drawer-items {
@@ -3319,7 +3327,1128 @@
             white-space: nowrap;
         }
 
+        /* ==========================================================================
+           NEW FEATURES: LANGUAGE SWITCHER, DESKTOP CATEGORIES BUTTON & MODALS
+           ========================================================================== */
+
+        /* 1. Multi-Language Selector in Header & Top Bar */
+        .lang-switcher-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .lang-trigger-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: var(--radius-full);
+            background-color: var(--color-surface-muted);
+            border: 1.5px solid var(--color-border);
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--color-text-main);
+            min-height: 44px;
+            cursor: pointer;
+            transition: min-height 240ms cubic-bezier(0.16, 1, 0.3, 1), height 240ms cubic-bezier(0.16, 1, 0.3, 1), padding 240ms cubic-bezier(0.16, 1, 0.3, 1), font-size 240ms cubic-bezier(0.16, 1, 0.3, 1), background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+        }
+
+        .main-header.is-scrolled .lang-trigger-btn,
+        .header-content.is-scrolled .lang-trigger-btn {
+            min-height: 35px;
+            height: 35px;
+            padding: 4px 12px;
+            font-size: 13px;
+            gap: 6px;
+        }
+
+        .main-header.is-scrolled:hover .lang-trigger-btn {
+            min-height: 38px;
+            height: 38px;
+            padding: 5px 14px;
+            font-size: 13px;
+        }
+
+        .lang-trigger-btn:hover,
+        .lang-trigger-btn.is-open {
+            background-color: var(--color-primary-soft);
+            color: var(--color-primary);
+            border-color: #a7f3d0;
+        }
+
+        .lang-code-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-primary);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: var(--radius-full);
+            line-height: 1.2;
+        }
+
+        .lang-chevron {
+            width: 14px;
+            height: 14px;
+            transition: transform 200ms ease;
+        }
+
+        .lang-trigger-btn.is-open .lang-chevron {
+            transform: rotate(180deg);
+        }
+
+        .lang-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            min-width: 245px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            border: 1.5px solid var(--color-border);
+            padding: 8px;
+            box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.18); /* taste-skill-ignore */
+            z-index: 1200;
+            display: none;
+        }
+
+        .lang-dropdown-menu.is-open {
+            display: block;
+        }
+
+        .lang-dropdown-header {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--color-text-muted);
+            padding: 6px 10px 8px 10px;
+            border-bottom: 1.5px solid var(--color-surface-muted);
+            margin-bottom: 6px;
+        }
+
+        .lang-option-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--color-text-main);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 150ms ease, color 150ms ease;
+            text-align: right;
+            min-height: 44px;
+        }
+
+        .lang-option-btn:hover {
+            background-color: var(--color-surface-muted);
+            color: var(--color-primary);
+        }
+
+        .lang-option-btn.active {
+            background-color: var(--color-primary-soft);
+            color: var(--color-primary);
+            font-weight: 800;
+        }
+
+        .lang-option-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lang-option-flag {
+            font-size: 13px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background-color: #f1f5f9;
+            color: #334155;
+            min-width: 34px;
+            text-align: center;
+        }
+
+        .lang-option-btn.active .lang-option-flag {
+            background-color: var(--color-primary);
+            color: #ffffff;
+        }
+
+        .lang-option-titles {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .lang-option-native {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--color-text-main);
+            line-height: 1.25;
+        }
+
+        .lang-option-sub {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .lang-check-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--color-primary);
+            opacity: 0;
+            flex-shrink: 0;
+        }
+
+        .lang-option-btn.active .lang-check-icon {
+            opacity: 1;
+        }
+
+        /* Header Location Quick Button (Desktop & Mobile) */
+        .country-pill {
+            background-color: rgba(255, 255, 255, 0.16);
+            padding: 5px 14px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.28);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+        }
+
+        .country-pill:hover {
+            background-color: rgba(255, 255, 255, 0.28);
+            border-color: #fde047;
+            transform: translateY(-1px);
+        }
+
+        .country-pill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #fde047;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        /* Mobile Utility Bar for Location & Language (visible on <= 768px) */
+        .mobile-utility-strip {
+            display: none;
+            background-color: var(--color-primary-dark);
+            color: #ffffff;
+            padding: 6px 0;
+            font-size: 13px;
+        }
+
+        .mobile-utility-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .mobile-loc-btn,
+        .mobile-lang-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.24);
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            min-height: 36px;
+        }
+
+        /* 2. Desktop-Only "دسته‌بندی‌ها" Button Before Category Sliders */
+        .desktop-all-cats-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--color-primary);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 800;
+            border: 1.5px solid #047857;
+            cursor: pointer;
+            white-space: nowrap;
+            flex-shrink: 0;
+            min-height: 40px;
+            margin-left: 8px;
+            transition: background-color 180ms ease, transform 160ms ease, border-color 180ms ease;
+        }
+
+        .desktop-all-cats-btn svg {
+            width: 18px;
+            height: 18px;
+            color: #fde047;
+            flex-shrink: 0;
+            stroke-width: 2.2;
+        }
+
+        .desktop-all-cats-btn:hover {
+            background-color: #047857;
+            border-color: #f59e0b;
+            transform: translateY(-1px);
+        }
+
+        .all-cats-count-pill {
+            background-color: #f59e0b;
+            color: #0f172a;
+            font-size: 13px;
+            font-weight: 900;
+            padding: 1px 7px;
+            border-radius: var(--radius-full);
+            line-height: 1.3;
+        }
+
+        .cats-slider-desktop-layout {
+            display: flex;
+            align-items: stretch;
+            gap: 14px;
+            width: 100%;
+        }
+
+        .cats-slider-desktop-layout .slider-scroll-wrap {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .cats-slider-lead-btn {
+            flex: 0 0 164px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #064e3b;
+            color: #ffffff;
+            padding: 16px 14px;
+            border-radius: var(--radius-lg);
+            border: 2px solid #047857;
+            cursor: pointer;
+            margin-bottom: 18px;
+            transition: background-color 180ms ease, transform 180ms ease, border-color 180ms ease;
+            text-align: center;
+        }
+
+        .cats-slider-lead-btn:hover {
+            background-color: #047857;
+            border-color: #f59e0b;
+            transform: translateY(-4px);
+        }
+
+        .lead-btn-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            background-color: #f59e0b;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 180ms ease;
+        }
+
+        .lead-btn-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke-width: 2.2;
+        }
+
+        .cats-slider-lead-btn:hover .lead-btn-icon {
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        .lead-btn-title {
+            font-size: 15px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .lead-btn-sub {
+            font-size: 13px;
+            color: #fde047;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        /* 3. Location Detection & Country Switcher Modal */
+        .site-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(15, 23, 42, 0.62);
+            z-index: 2300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .site-modal-overlay.active {
+            display: flex;
+        }
+
+        /* Entry Auto-Mode: sits cleanly on the left/lower side so Hero Headline remains 100% readable */
+        #locationModalOverlay.auto-entry-mode {
+            background-color: transparent;
+            pointer-events: none;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 20px 28px;
+        }
+
+        #locationModalOverlay.auto-entry-mode .location-modal-card {
+            pointer-events: auto;
+            max-width: 460px;
+            max-height: 82vh;
+        }
+
+        .location-modal-card {
+            background-color: #ffffff;
+            border-radius: 22px;
+            border: 2px solid #10b981;
+            width: 100%;
+            max-width: 540px;
+            max-height: 88vh;
+            overflow-y: auto;
+            box-shadow: 0 24px 54px -10px rgba(6, 78, 59, 0.38); /* taste-skill-ignore */
+        }
+
+        .location-modal-hero {
+            position: relative;
+            background-color: #064e3b;
+            color: #ffffff;
+            padding: 14px 20px 12px 20px;
+            border-bottom: 2px solid #047857;
+        }
+
+        .location-modal-hero .modal-close-btn {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            border-radius: var(--radius-full);
+            background-color: rgba(255, 255, 255, 0.14);
+            border: 1.5px solid rgba(255, 255, 255, 0.28);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 150ms ease, color 150ms ease;
+        }
+
+        .location-modal-hero .modal-close-btn:hover {
+            background-color: #f59e0b;
+            color: #0f172a;
+            border-color: #f59e0b;
+        }
+
+        .ip-detect-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background-color: rgba(255, 255, 255, 0.14);
+            border: 1.5px solid rgba(253, 224, 71, 0.45);
+            color: #fde047;
+            padding: 4px 11px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 6px;
+            margin-left: 44px;
+            max-width: calc(100% - 48px);
+        }
+
+        .ip-pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #fde047;
+            display: inline-block;
+        }
+
+        .location-modal-title {
+            font-size: 19px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.35;
+            margin-bottom: 4px;
+            padding-left: 38px;
+        }
+
+        .location-modal-subtitle {
+            font-size: 13px;
+            color: #d1fae5;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .location-modal-body {
+            padding: 14px 20px 16px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ip-detected-notice {
+            background-color: #ecfdf5;
+            border: 1.5px solid #86efac;
+            border-radius: 14px;
+            padding: 11px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .ip-notice-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background-color: #059669;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .ip-notice-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #064e3b;
+            font-weight: 700;
+        }
+
+        .ip-notice-text strong {
+            font-weight: 900;
+            color: #047857;
+            background-color: #d1fae5;
+            padding: 1px 6px;
+            border-radius: 5px;
+        }
+
+        .loc-field-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--color-text-main);
+            margin-bottom: 6px;
+        }
+
+        .loc-field-label svg {
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        .loc-select-wrap {
+            position: relative;
+        }
+
+        .loc-select-input {
+            width: 100%;
+            height: 44px;
+            padding: 0 14px 0 38px;
+            border-radius: 12px;
+            border: 2px solid var(--color-primary);
+            background-color: #ffffff;
+            color: var(--color-text-main);
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            outline: none;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .loc-select-arrow {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--color-primary);
+        }
+
+        .loc-quick-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .loc-country-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 10px;
+            background-color: var(--color-surface-muted);
+            border: 1.5px solid var(--color-border);
+            cursor: pointer;
+            transition: background-color 150ms ease, border-color 150ms ease;
+            text-align: right;
+            min-height: 40px;
+        }
+
+        .loc-country-card:hover {
+            background-color: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .loc-country-card.active {
+            background-color: #ecfdf5;
+            border-color: var(--color-primary);
+        }
+
+        .loc-card-code {
+            font-size: 13px;
+            font-weight: 900;
+            padding: 3px 7px;
+            border-radius: 6px;
+            background-color: #e2e8f0;
+            color: #0f172a;
+            flex-shrink: 0;
+        }
+
+        .loc-country-card.active .loc-card-code {
+            background-color: var(--color-primary);
+            color: #ffffff;
+        }
+
+        .loc-card-info {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        .loc-card-name {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--color-text-main);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .loc-card-meta {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .loc-selected-summary {
+            background-color: #f8fafc;
+            border: 1.5px solid var(--color-border);
+            border-radius: 12px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .loc-summary-col {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .loc-summary-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-body);
+        }
+
+        .loc-summary-val {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--color-primary);
+        }
+
+        .loc-free-badge {
+            background-color: #fef3c7;
+            color: #92400e;
+            border: 1.5px solid #fde68a;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .location-modal-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-loc-confirm {
+            flex: 1;
+            min-height: 44px;
+            padding: 8px 16px;
+            background-color: var(--color-primary);
+            color: #ffffff;
+            border-radius: var(--radius-full);
+            font-size: 14px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background-color 160ms ease, transform 150ms ease;
+        }
+
+        .btn-loc-confirm:hover {
+            background-color: #047857;
+            transform: translateY(-1px);
+        }
+
+        .btn-loc-keep {
+            min-height: 44px;
+            padding: 8px 16px;
+            background-color: var(--color-surface-muted);
+            color: var(--color-text-body);
+            border: 1.5px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: background-color 160ms ease, color 160ms ease;
+        }
+
+        .btn-loc-keep:hover {
+            background-color: #e2e8f0;
+            color: var(--color-text-main);
+        }
+
+        /* 4. All Categories & Subcategories Mega-Modal */
+        .all-cats-modal-card {
+            background-color: #ffffff;
+            border-radius: 24px;
+            border: 2px solid var(--color-border);
+            width: 94vw;
+            max-width: 1120px;
+            max-height: 86vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.32); /* taste-skill-ignore */
+        }
+
+        .all-cats-modal-header {
+            padding: 18px 24px;
+            background-color: #064e3b;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .all-cats-header-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .all-cats-header-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 14px;
+            background-color: #f59e0b;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .all-cats-modal-title {
+            font-size: 19px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.3;
+        }
+
+        .all-cats-modal-sub {
+            font-size: 13px;
+            color: #d1fae5;
+            font-weight: 600;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .all-cats-search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background-color: #ffffff;
+            border: 2px solid #10b981;
+            border-radius: var(--radius-full);
+            padding: 6px 16px;
+            min-width: 320px;
+            flex: 1;
+            max-width: 420px;
+            min-height: 44px;
+        }
+
+        .all-cats-search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--color-text-main);
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .all-cats-close-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-full);
+            background-color: rgba(255, 255, 255, 0.16);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 150ms ease, color 150ms ease;
+        }
+
+        .all-cats-close-btn:hover {
+            background-color: #f59e0b;
+            color: #0f172a;
+            border-color: #f59e0b;
+        }
+
+        .all-cats-modal-body {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .all-cats-sidebar {
+            background-color: #f8fafc;
+            border-left: 1.5px solid var(--color-border);
+            padding: 14px 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .all-cats-side-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--color-text-main);
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: right;
+            min-height: 44px;
+            transition: background-color 150ms ease, color 150ms ease;
+        }
+
+        .all-cats-side-item:hover {
+            background-color: #e2e8f0;
+        }
+
+        .all-cats-side-item.active {
+            background-color: var(--color-primary);
+            color: #ffffff;
+            font-weight: 800;
+        }
+
+        .all-cats-side-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .all-cats-side-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: #94a3b8;
+            flex-shrink: 0;
+        }
+
+        .all-cats-side-item.active .all-cats-side-dot {
+            background-color: #fde047;
+        }
+
+        .all-cats-side-count {
+            font-size: 13px;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            background-color: #e2e8f0;
+            color: #475569;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .all-cats-side-item.active .all-cats-side-count {
+            background-color: #f59e0b;
+            color: #0f172a;
+        }
+
+        .all-cats-main-content {
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #ffffff;
+        }
+
+        .all-cats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            align-content: start;
+        }
+
+        .all-cat-group-card {
+            background-color: #f8fafc;
+            border: 1.5px solid var(--color-border);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: border-color 160ms ease, background-color 160ms ease;
+        }
+
+        .all-cat-group-card:hover {
+            border-color: #86efac;
+            background-color: #ffffff;
+        }
+
+        .all-cat-group-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1.5px solid var(--color-border);
+        }
+
+        .all-cat-group-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .all-cat-group-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .all-cat-group-badge svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .all-cat-group-title {
+            font-size: 15px;
+            font-weight: 900;
+            color: var(--color-text-main);
+            line-height: 1.3;
+        }
+
+        .all-cat-group-meta {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .all-cat-view-all {
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--color-primary);
+            background-color: var(--color-primary-soft);
+            padding: 5px 10px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background-color 150ms ease, color 150ms ease;
+        }
+
+        .all-cat-view-all:hover {
+            background-color: var(--color-primary);
+            color: #ffffff;
+        }
+
+        .subcat-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .subcat-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 7px 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-body);
+            transition: background-color 140ms ease, color 140ms ease;
+        }
+
+        .subcat-link:hover {
+            background-color: var(--color-primary-soft);
+            color: var(--color-primary);
+        }
+
+        .subcat-link-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .subcat-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #10b981;
+            flex-shrink: 0;
+        }
+
+        .subcat-count-tag {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-muted);
+            background-color: #e2e8f0;
+            padding: 1px 8px;
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+        }
+
+        .all-cats-modal-footer {
+            padding: 14px 24px;
+            background-color: #f8fafc;
+            border-top: 1.5px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .all-cats-footer-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--color-text-body);
+        }
+
+        .all-cats-footer-info svg {
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        .all-cats-footer-cta {
+            background-color: #f59e0b;
+            color: #0f172a;
+            font-size: 13px;
+            font-weight: 900;
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            min-height: 40px;
+        }
+
+        @media (max-width: 1024px) {
+            #locationModalOverlay.auto-entry-mode {
+                align-items: flex-end;
+                justify-content: center;
+                padding: 12px 16px 80px 16px;
+            }
+
+            #locationModalOverlay.auto-entry-mode .location-modal-card {
+                max-width: 520px;
+                max-height: 48vh;
+            }
+
+            .all-cats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
+            .desktop-all-cats-btn,
+            .cats-slider-lead-btn {
+                display: none !important;
+            }
+
+            .mobile-utility-strip {
+                display: block;
+            }
+
+            .loc-quick-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .location-modal-actions {
+                flex-direction: column;
+            }
+
+            .btn-loc-confirm,
+            .btn-loc-keep {
+                width: 100%;
+            }
+
+            .all-cats-modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            .all-cats-sidebar {
+                display: none;
+            }
+
             body {
                 padding-bottom: 74px; /* safe area for bottom app nav */
             }
@@ -4207,16 +5336,34 @@
                         <circle cx="17" cy="18" r="2"></circle>
                         <circle cx="7" cy="18" r="2"></circle>
                     </svg>
-                    <span>ارسال رایگان به سراسر اروپا برای سفارش‌های بالای <strong>۶۵ یورو</strong> | تحویل اکسپرس با DPD و Chronopost</span>
+                    <span id="topFreeShipText">ارسال رایگان به سراسر اروپا برای سفارش‌های بالای <strong id="topFreeShipLimit">۶۰ یورو</strong> | تحویل اکسپرس با DPD و Chronopost</span>
                 </div>
                 <div class="top-links">
-                    <div class="country-pill" id="countrySwitch">
-                        <span>ارسال به فرانسه (تغییر)</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <a href="#tracking">پیگیری سفارش</a>
-                    <a href="#faq">پشتیبانی</a>
+                    <button type="button" class="country-pill" id="countrySwitch" onclick="openLocationModal('manual')" aria-label="تغییر کشور و موقعیت ارسال" title="تغییر کشور مقصد ارسال" data-ui>
+                        <span class="country-pill-dot" aria-hidden="true"></span>
+                        <span id="topCountryLabel">ارسال به فرانسه (تغییر)</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <a href="#tracking" id="topTrackLink">پیگیری سفارش</a>
+                    <a href="#faq" id="topSupportLink">پشتیبانی</a>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Utility Bar (Location & Language Switcher on Mobile/Tablet) -->
+    <div class="mobile-utility-strip" data-ui="mobile-utility">
+        <div class="container">
+            <div class="mobile-utility-inner">
+                <button type="button" class="mobile-loc-btn" id="mobileCountrySwitchBtn" onclick="openLocationModal('manual')" aria-label="تغییر موقعیت و کشور مقصد ارسال">
+                    <span class="country-pill-dot" aria-hidden="true"></span>
+                    <span id="mobileCountryLabel">موقعیت: فرانسه (تغییر)</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <button type="button" class="mobile-lang-btn" id="mobileLangSwitchBtn" onclick="cycleMobileLanguage()" aria-label="تغییر زبان وب‌سایت">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    <span id="mobileLangLabel">FA · فارسی</span>
+                </button>
             </div>
         </div>
     </div>
@@ -4231,7 +5378,7 @@
                     <div class="brand-icon">س</div>
                     <div class="brand-info">
                         <div class="brand-name">SuperSe<span>Market</span></div>
-                        <span class="brand-sub">هایپرمارکت آنلاین ایرانی در اروپا</span>
+                        <span class="brand-sub" id="brandSubText">هایپرمارکت آنلاین ایرانی در اروپا</span>
                     </div>
                 </a>
 
@@ -4244,7 +5391,7 @@
                         </svg>
                         <input type="text" id="searchInput" placeholder="جستجوی برنج طارم، زعفران قائنات، گز اصفهان، کشک، سبزی خشک..." autocomplete="off">
                         <button class="search-btn" type="button" aria-label="جستجو">
-                            <span>جستجو</span>
+                            <span id="searchBtnText">جستجو</span>
                         </button>
                     </div>
 
@@ -4264,12 +5411,80 @@
 
                 <!-- Actions -->
                 <div class="header-actions">
+                    <!-- Multi-Language Selector Dropdown -->
+                    <div class="lang-switcher-wrap" id="langSwitcherWrap" data-ui>
+                        <button type="button" class="lang-trigger-btn" id="langTriggerBtn" onclick="toggleLangDropdown(event)" aria-haspopup="listbox" aria-expanded="false" aria-label="انتخاب زبان سایت" title="انتخاب زبان (Language)">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span class="lang-code-badge" id="currentLangCode">FA</span>
+                            <span id="currentLangName">فارسی</span>
+                            <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                        </button>
+
+                        <div class="lang-dropdown-menu" id="langDropdownMenu" role="listbox" aria-label="زبان‌های قابل انتخاب">
+                            <div class="lang-dropdown-header">انتخاب زبان وب‌سایت · Language</div>
+                            <button type="button" class="lang-option-btn active" data-lang="FA" onclick="selectSiteLanguage('FA')">
+                                <span class="lang-option-left">
+                                    <span class="lang-option-flag">FA</span>
+                                    <span class="lang-option-titles">
+                                        <span class="lang-option-native">فارسی</span>
+                                        <span class="lang-option-sub">Persian (پیش‌فرض)</span>
+                                    </span>
+                                </span>
+                                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </button>
+                            <button type="button" class="lang-option-btn" data-lang="EN" onclick="selectSiteLanguage('EN')">
+                                <span class="lang-option-left">
+                                    <span class="lang-option-flag">EN</span>
+                                    <span class="lang-option-titles">
+                                        <span class="lang-option-native">English</span>
+                                        <span class="lang-option-sub">انگلیسی (EU International)</span>
+                                    </span>
+                                </span>
+                                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </button>
+                            <button type="button" class="lang-option-btn" data-lang="FR" onclick="selectSiteLanguage('FR')">
+                                <span class="lang-option-left">
+                                    <span class="lang-option-flag">FR</span>
+                                    <span class="lang-option-titles">
+                                        <span class="lang-option-native">Français</span>
+                                        <span class="lang-option-sub">فرانسوی (France &amp; Belgique)</span>
+                                    </span>
+                                </span>
+                                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </button>
+                            <button type="button" class="lang-option-btn" data-lang="DE" onclick="selectSiteLanguage('DE')">
+                                <span class="lang-option-left">
+                                    <span class="lang-option-flag">DE</span>
+                                    <span class="lang-option-titles">
+                                        <span class="lang-option-native">Deutsch</span>
+                                        <span class="lang-option-sub">آلمانی (Deutschland &amp; Österreich)</span>
+                                    </span>
+                                </span>
+                                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </button>
+                            <button type="button" class="lang-option-btn" data-lang="NL" onclick="selectSiteLanguage('NL')">
+                                <span class="lang-option-left">
+                                    <span class="lang-option-flag">NL</span>
+                                    <span class="lang-option-titles">
+                                        <span class="lang-option-native">Nederlands</span>
+                                        <span class="lang-option-sub">هلندی (Nederland &amp; Vlaanderen)</span>
+                                    </span>
+                                </span>
+                                <svg class="lang-check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </button>
+                        </div>
+                    </div>
+
                     <a href="#" class="action-link" title="ورود یا حساب کاربری">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
-                        <span>ورود / حساب</span>
+                        <span id="loginLinkText">ورود / حساب</span>
                     </a>
 
                     <button class="action-link cart-trigger" id="btnOpenCart" title="سبد خرید" aria-label="سبد خرید" data-ui>
@@ -4278,7 +5493,7 @@
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                         </svg>
-                        <span>سبد خرید</span>
+                        <span id="cartBtnText">سبد خرید</span>
                         <div class="cart-badge" id="cartBadgeCount">3</div>
                     </button>
                 </div>
@@ -4291,6 +5506,18 @@
     <nav class="category-nav" id="categoryNav" aria-label="دسته‌بندی‌های کالا">
         <div class="container">
             <div class="nav-scroll-wrapper" data-ui="nav-slider">
+                <!-- Desktop-only "دسته‌بندی‌ها" Button Before Category Slider -->
+                <button type="button" class="desktop-all-cats-btn" id="btnAllCatsNav" onclick="toggleAllCategoriesModal(true)" aria-haspopup="dialog" aria-controls="allCategoriesModalOverlay" title="مشاهده همه دسته‌بندی‌ها و زیردسته‌ها" data-ui>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                        <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                        <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                    </svg>
+                    <span id="navAllCatsBtnText">دسته‌بندی‌ها</span>
+                    <span class="all-cats-count-pill">۱۲</span>
+                </button>
+
                 <button class="nav-scroll-arrow nav-prev" onclick="slideNav(1)" aria-label="دسته‌های قبل" title="مشاهده دسته‌های قبل">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
                 </button>
@@ -4487,11 +5714,25 @@
                 </div>
             </div>
 
-            <!-- Categories Slider Track with Overflow Cues -->
-            <div class="slider-scroll-wrap" id="catsWrap">
-                <div class="slider-fade-cue slider-fade-start" aria-hidden="true"></div>
-                <div class="slider-fade-cue slider-fade-end" aria-hidden="true"></div>
-                <div class="cats-slider-track" id="catsTrack" data-ui="slider">
+            <!-- Categories Slider Track with Desktop-Only "دسته‌بندی‌ها" Button Before Slider -->
+            <div class="cats-slider-desktop-layout">
+                <button type="button" class="cats-slider-lead-btn" id="btnAllCatsSliderLead" onclick="toggleAllCategoriesModal(true)" aria-haspopup="dialog" aria-controls="allCategoriesModalOverlay" title="مشاهده تمام دسته‌بندی‌ها و زیردسته‌ها" data-ui>
+                    <div class="lead-btn-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                        </svg>
+                    </div>
+                    <span class="lead-btn-title" id="sliderAllCatsBtnText">دسته‌بندی‌ها</span>
+                    <span class="lead-btn-sub" id="sliderAllCatsSubText">همه دسته‌ها و زیردسته‌ها</span>
+                </button>
+
+                <div class="slider-scroll-wrap" id="catsWrap">
+                    <div class="slider-fade-cue slider-fade-start" aria-hidden="true"></div>
+                    <div class="slider-fade-cue slider-fade-end" aria-hidden="true"></div>
+                    <div class="cats-slider-track" id="catsTrack" data-ui="slider">
                 <a href="#" class="cat-slide-item">
                     <div class="cat-icon-badge badge-grain" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4646,7 +5887,8 @@
                         <span class="cat-slide-count">۳۸ محصول</span>
                     </div>
                 </a>
-            </div>
+                    </div>
+                </div>
             </div>
             <div class="slider-dots-row" id="catsDots" aria-label="صفحات دسته‌بندی"></div>
         </section>
@@ -5960,6 +7202,188 @@
         </button>
     </nav>
 
+    <!-- 14. IP LOCATION DETECTION & COUNTRY SWITCHER MODAL -->
+    <div class="site-modal-overlay" id="locationModalOverlay" onclick="handleLocationModalBackdrop(event)" data-ui aria-hidden="true">
+        <div class="location-modal-card" role="dialog" aria-modal="true" aria-labelledby="locationModalTitle">
+            <div class="location-modal-hero">
+                <button type="button" class="modal-close-btn" onclick="closeLocationModal()" aria-label="بستن پنجره انتخاب لوکیشن">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+                <div class="ip-detect-badge">
+                    <span class="ip-pulse-dot" aria-hidden="true"></span>
+                    <span>تشخیص خودکار موقعیت جغرافیایی (IP: Europe / FR)</span>
+                </div>
+                <h2 class="location-modal-title" id="locationModalTitle">لوکیشن شما روی فرانسه تنظیم شد</h2>
+                <p class="location-modal-subtitle">محاسبه خودکار تعرفه پستی، زمان تحویل اکسپرس و سقف ارسال رایگان بر اساس کشور مقصد شما</p>
+            </div>
+
+            <div class="location-modal-body">
+                <div class="ip-detected-notice">
+                    <div class="ip-notice-icon" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="ip-notice-text" id="locationModalNoticeText">
+                        لوکیشن شما از روی <strong>IP</strong> به صورت پیش‌فرض روی <strong>فرانسه (France)</strong> قرار داده شده است. برای تغییر کشور مقصد، از منوی زیر یکی را انتخاب کنید:
+                    </div>
+                </div>
+
+                <div>
+                    <label class="loc-field-label" for="modalCountrySelect">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <span>انتخاب کشور مقصد از منوی زیر:</span>
+                    </label>
+                    <div class="loc-select-wrap">
+                        <select class="loc-select-input" id="modalCountrySelect" onchange="previewLocationSelection(this.value)">
+                            <option value="FR" selected>فرانسه (France) - پاریس و سراسر فرانسه (پیش‌فرض IP)</option>
+                            <option value="DE">آلمان (Germany) - برلین، هامبورگ، مونیخ، فرانکفورت</option>
+                            <option value="NL">هلند (Netherlands) - آمستردام، روتردام، لاهه</option>
+                            <option value="BE">بلژیک (Belgium) - بروکسل، آنتورپ، گنت</option>
+                            <option value="IT">ایتالیا (Italy) - رم، میلان، تورین</option>
+                            <option value="AT">اتریش (Austria) - وین، گراتس، لینتس</option>
+                            <option value="CH">سوئیس (Switzerland) - زوریخ، ژنو، برن</option>
+                            <option value="SE">سوئد و اسکاندیناوی (Sweden &amp; Nordic) - استکهلم، گوتنبرگ</option>
+                        </select>
+                        <svg class="loc-select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+
+                <!-- Quick Country Cards Grid -->
+                <div class="loc-quick-grid" id="locQuickGrid" role="group" aria-label="انتخاب سریع کشور مقصد">
+                    <button type="button" class="loc-country-card active" data-country="FR" onclick="previewLocationSelection('FR')">
+                        <span class="loc-card-code">FR</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">فرانسه (IP شما)</span>
+                            <span class="loc-card-meta">۲۴ ساعته · بالای ۶۰€ رایگان</span>
+                        </span>
+                    </button>
+                    <button type="button" class="loc-country-card" data-country="DE" onclick="previewLocationSelection('DE')">
+                        <span class="loc-card-code">DE</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">آلمان</span>
+                            <span class="loc-card-meta">۲۴ تا ۴۸ ساعت · بالای ۶۵€ رایگان</span>
+                        </span>
+                    </button>
+                    <button type="button" class="loc-country-card" data-country="NL" onclick="previewLocationSelection('NL')">
+                        <span class="loc-card-code">NL</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">هلند</span>
+                            <span class="loc-card-meta">۲۴ تا ۴۸ ساعت · بالای ۶۵€ رایگان</span>
+                        </span>
+                    </button>
+                    <button type="button" class="loc-country-card" data-country="BE" onclick="previewLocationSelection('BE')">
+                        <span class="loc-card-code">BE</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">بلژیک</span>
+                            <span class="loc-card-meta">۲۴ ساعته · بالای ۶۰€ رایگان</span>
+                        </span>
+                    </button>
+                    <button type="button" class="loc-country-card" data-country="IT" onclick="previewLocationSelection('IT')">
+                        <span class="loc-card-code">IT</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">ایتالیا</span>
+                            <span class="loc-card-meta">۴۸ ساعته · بالای ۷۰€ رایگان</span>
+                        </span>
+                    </button>
+                    <button type="button" class="loc-country-card" data-country="AT" onclick="previewLocationSelection('AT')">
+                        <span class="loc-card-code">AT</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">اتریش</span>
+                            <span class="loc-card-meta">۴۸ ساعته · بالای ۷۰€ رایگان</span>
+                        </span>
+                    </button>
+                    <button type="button" class="loc-country-card" data-country="CH" onclick="previewLocationSelection('CH')">
+                        <span class="loc-card-code">CH</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">سوئیس</span>
+                            <span class="loc-card-meta">۴۸ تا ۷۲ ساعت · بالای ۸۵€ رایگان</span>
+                        </span>
+                    </button>
+                    <button type="button" class="loc-country-card" data-country="SE" onclick="previewLocationSelection('SE')">
+                        <span class="loc-card-code">SE</span>
+                        <span class="loc-card-info">
+                            <span class="loc-card-name">سوئد و نوردیک</span>
+                            <span class="loc-card-meta">۷۲ ساعته · بالای ۹۰€ رایگان</span>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Live Shipping Summary for Selected Destination -->
+                <div class="loc-selected-summary" id="locSelectedSummary">
+                    <div class="loc-summary-col">
+                        <span class="loc-summary-label" id="locSumCourier">پست اکسپرس: Chronopost / Colissimo</span>
+                        <span class="loc-summary-val" id="locSumTime">تحویل ۲۴ ساعت از انبار پاریس</span>
+                    </div>
+                    <span class="loc-free-badge" id="locSumFree">ارسال رایگان بالای ۶۰ یورو</span>
+                </div>
+
+                <div class="location-modal-actions">
+                    <button type="button" class="btn-loc-confirm" onclick="confirmLocationChange()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <span>تایید و ذخیره لوکیشن ارسال</span>
+                    </button>
+                    <button type="button" class="btn-loc-keep" onclick="closeLocationModal()">
+                        <span>ادامه با فرانسه</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 15. ALL CATEGORIES & SUBCATEGORIES MEGA MODAL -->
+    <div class="site-modal-overlay" id="allCategoriesModalOverlay" onclick="handleAllCatsModalBackdrop(event)" data-ui aria-hidden="true">
+        <div class="all-cats-modal-card" role="dialog" aria-modal="true" aria-labelledby="allCatsModalTitle">
+            <div class="all-cats-modal-header">
+                <div class="all-cats-header-title-wrap">
+                    <div class="all-cats-header-icon" aria-hidden="true">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="all-cats-modal-title" id="allCatsModalTitle">همه دسته‌بندی‌ها و زیردسته‌های فروشگاه</h2>
+                        <span class="all-cats-modal-sub">بیش از ۲,۰۰۰ قلم کالای اصیل ایرانی در ۱۲ دسته‌بندی اصلی و ۶۰ زیردسته تخصصی</span>
+                    </div>
+                </div>
+
+                <div class="all-cats-search-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" aria-hidden="true">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="catModalSearchInput" placeholder="جستجو در دسته‌بندی یا زیردسته (مثلاً برنج طارم، زعفران، کشک، گز...)" oninput="filterAllCategoriesModal(this.value)" autocomplete="off">
+                </div>
+
+                <button type="button" class="all-cats-close-btn" onclick="toggleAllCategoriesModal(false)" aria-label="بستن پنجره همه دسته‌بندی‌ها">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div class="all-cats-modal-body">
+                <!-- Sidebar Navigation for Main Categories -->
+                <aside class="all-cats-sidebar" id="allCatsSidebar" aria-label="فهرست دسته‌های اصلی"></aside>
+
+                <!-- Main Grid of Categories & Subcategories -->
+                <div class="all-cats-main-content" id="allCatsMainContent"></div>
+            </div>
+
+            <div class="all-cats-modal-footer">
+                <div class="all-cats-footer-info">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span>تمامی کالاها با تضمین اصالت و بسته‌بندی ایزوترمال از انبار پاریس به سراسر اروپا ارسال می‌شوند.</span>
+                </div>
+                <button type="button" class="all-cats-footer-cta" onclick="toggleAllCategoriesModal(false); navGoDeals();">
+                    <span>مشاهده تخفیف‌های شگفت‌انگیز امروز ←</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notification (data-ui) -->
     <div class="toast-box" id="siteNotice">
         <span id="toastContent">محصول با موفقیت اضافه شد.</span>
@@ -6244,7 +7668,7 @@
                 document.body.style.overflow = 'hidden';
                 document.body.classList.add('drawer-open');
             } else {
-                overlay.classList.remove('active');
+                overlay.classList.remove('active', 'auto-entry-mode');
                 overlay.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
                 document.body.classList.remove('drawer-open');
@@ -6975,6 +8399,10 @@
             if (cPrice) cPrice.textContent = formattedCost;
             if (cFree) cFree.textContent = data.free ? `${data.free} ارسال رایگان است` : '';
 
+            if (typeof syncCountryIndicators === 'function') {
+                syncCountryIndicators(country);
+            }
+
             const resultCard = document.getElementById('calcResultCard');
             if (resultCard) {
                 resultCard.classList.remove('calc-updated');
@@ -7273,7 +8701,7 @@
                 document.body.style.overflow = 'hidden';
                 setActiveBottomNav('navCatsBtn');
             } else {
-                overlay.classList.remove('active');
+                overlay.classList.remove('active', 'auto-entry-mode');
                 overlay.setAttribute('aria-hidden', 'true');
                 document.body.style.overflow = '';
             }
@@ -7423,6 +8851,661 @@
             });
         }
 
+        // ============================================================
+        // 6. IP LOCATION MODAL & COUNTRY SWITCHER ENGINE
+        // ============================================================
+        let currentDestinationCountry = 'FR';
+        let locationModalTriggerMode = 'auto';
+
+        const countryLocationMeta = {
+            FR: {
+                shortName: 'فرانسه',
+                enName: 'France',
+                freeLimitEur: '۶۰ یورو',
+                courier: 'Chronopost / Colissimo',
+                fastTime: '۲۴ ساعت از انبار پاریس',
+                freeBadge: 'ارسال رایگان بالای ۶۰ یورو'
+            },
+            DE: {
+                shortName: 'آلمان',
+                enName: 'Germany',
+                freeLimitEur: '۶۵ یورو',
+                courier: 'DPD Germany / DHL Express',
+                fastTime: '۲۴ تا ۴۸ ساعت اکسپرس',
+                freeBadge: 'ارسال رایگان بالای ۶۵ یورو'
+            },
+            NL: {
+                shortName: 'هلند',
+                enName: 'Netherlands',
+                freeLimitEur: '۶۵ یورو',
+                courier: 'PostNL / DPD Europe',
+                fastTime: '۲۴ تا ۴۸ ساعت اکسپرس',
+                freeBadge: 'ارسال رایگان بالای ۶۵ یورو'
+            },
+            BE: {
+                shortName: 'بلژیک',
+                enName: 'Belgium',
+                freeLimitEur: '۶۰ یورو',
+                courier: 'Bpost / Chronopost Direct',
+                fastTime: '۲۴ ساعت مستقیم',
+                freeBadge: 'ارسال رایگان بالای ۶۰ یورو'
+            },
+            IT: {
+                shortName: 'ایتالیا',
+                enName: 'Italy',
+                freeLimitEur: '۷۰ یورو',
+                courier: 'BRT / DPD Italy',
+                fastTime: '۴۸ ساعت اکسپرس',
+                freeBadge: 'ارسال رایگان بالای ۷۰ یورو'
+            },
+            AT: {
+                shortName: 'اتریش',
+                enName: 'Austria',
+                freeLimitEur: '۷۰ یورو',
+                courier: 'Austrian Post / DPD',
+                fastTime: '۴۸ ساعت اکسپرس',
+                freeBadge: 'ارسال رایگان بالای ۷۰ یورو'
+            },
+            CH: {
+                shortName: 'سوئیس',
+                enName: 'Switzerland',
+                freeLimitEur: '۸۵ یورو',
+                courier: 'Swiss Post Express Priority',
+                fastTime: '۴۸ تا ۷۲ ساعت (با تشریفات گمرکی)',
+                freeBadge: 'ارسال رایگان بالای ۸۵ یورو'
+            },
+            SE: {
+                shortName: 'سوئد و نوردیک',
+                enName: 'Sweden & Nordic',
+                freeLimitEur: '۹۰ یورو',
+                courier: 'PostNord / DHL Nordic',
+                fastTime: '۷۲ ساعت اکسپرس',
+                freeBadge: 'ارسال رایگان بالای ۹۰ یورو'
+            }
+        };
+
+        function syncCountryIndicators(countryCode) {
+            const meta = countryLocationMeta[countryCode] || countryLocationMeta.FR;
+            currentDestinationCountry = countryCode;
+
+            const topLabel = document.getElementById('topCountryLabel');
+            const mobileLabel = document.getElementById('mobileCountryLabel');
+            const topLimit = document.getElementById('topFreeShipLimit');
+
+            if (topLabel) topLabel.textContent = `ارسال به ${meta.shortName} (تغییر)`;
+            if (mobileLabel) mobileLabel.textContent = `موقعیت: ${meta.shortName} (تغییر)`;
+            if (topLimit) topLimit.textContent = meta.freeLimitEur;
+        }
+
+        function previewLocationSelection(countryCode, isUserInteraction = true) {
+            if (isUserInteraction) {
+                locationModalTriggerMode = 'manual';
+            }
+            const meta = countryLocationMeta[countryCode] || countryLocationMeta.FR;
+            const selectEl = document.getElementById('modalCountrySelect');
+            if (selectEl && selectEl.value !== countryCode) {
+                selectEl.value = countryCode;
+            }
+
+            document.querySelectorAll('#locQuickGrid .loc-country-card').forEach(card => {
+                card.classList.toggle('active', card.getAttribute('data-country') === countryCode);
+            });
+
+            const courierEl = document.getElementById('locSumCourier');
+            const timeEl = document.getElementById('locSumTime');
+            const freeEl = document.getElementById('locSumFree');
+            const keepBtnSpan = document.querySelector('.btn-loc-keep span');
+
+            if (courierEl) courierEl.textContent = `پست اکسپرس: ${meta.courier}`;
+            if (timeEl) timeEl.textContent = `تحویل ${meta.fastTime}`;
+            if (freeEl) freeEl.textContent = meta.freeBadge;
+            if (keepBtnSpan) {
+                const curMeta = countryLocationMeta[currentDestinationCountry] || countryLocationMeta.FR;
+                keepBtnSpan.textContent = `ادامه با ${curMeta.shortName}`;
+            }
+        }
+
+        function openLocationModal(mode = 'manual') {
+            const overlay = document.getElementById('locationModalOverlay');
+            if (!overlay) return;
+
+            locationModalTriggerMode = mode;
+            overlay.classList.toggle('auto-entry-mode', mode === 'auto');
+            const titleEl = document.getElementById('locationModalTitle');
+            const noticeEl = document.getElementById('locationModalNoticeText');
+            const curMeta = countryLocationMeta[currentDestinationCountry] || countryLocationMeta.FR;
+
+            if (mode === 'auto') {
+                if (titleEl) titleEl.textContent = 'لوکیشن شما روی فرانسه تنظیم شد';
+                if (noticeEl) {
+                    noticeEl.innerHTML = 'لوکیشن شما از روی <strong>IP</strong> به صورت پیش‌فرض روی <strong>فرانسه (France)</strong> قرار داده شده است. برای تغییر کشور مقصد، از منوی زیر یکی را انتخاب کنید:';
+                }
+            } else {
+                if (titleEl) titleEl.textContent = `تغییر کشور مقصد ارسال (فعلی: ${curMeta.shortName})`;
+                if (noticeEl) {
+                    noticeEl.innerHTML = `در حال حاضر موقعیت ارسال شما روی <strong>${curMeta.shortName} (${curMeta.enName})</strong> تنظیم شده است. برای تغییر کشور مقصد، از منوی زیر یکی را انتخاب کنید:`;
+                }
+            }
+
+            previewLocationSelection(currentDestinationCountry, false);
+            overlay.classList.add('active');
+            overlay.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeLocationModal() {
+            const overlay = document.getElementById('locationModalOverlay');
+            if (!overlay) return;
+            overlay.classList.remove('active', 'auto-entry-mode');
+            overlay.setAttribute('aria-hidden', 'true');
+        }
+
+        function handleLocationModalBackdrop(event) {
+            if (event.target === document.getElementById('locationModalOverlay')) {
+                closeLocationModal();
+            }
+        }
+
+        function confirmLocationChange() {
+            const selectEl = document.getElementById('modalCountrySelect');
+            const chosen = selectEl ? selectEl.value : currentDestinationCountry;
+            const meta = countryLocationMeta[chosen] || countryLocationMeta.FR;
+
+            syncCountryIndicators(chosen);
+
+            const calcSelect = document.getElementById('calcSelect');
+            if (calcSelect) {
+                calcSelect.value = chosen;
+                runCalc();
+            }
+
+            closeLocationModal();
+            notify(`لوکیشن ارسال به «${meta.shortName}» تغییر یافت (${meta.freeBadge}).`);
+        }
+
+        // Auto-dismiss entry location modal if visitor starts scrolling down without interacting
+        window.addEventListener('scroll', () => {
+            const overlay = document.getElementById('locationModalOverlay');
+            if (overlay && overlay.classList.contains('active') && locationModalTriggerMode === 'auto' && window.scrollY > 40) {
+                closeLocationModal();
+            }
+        }, { passive: true });
+
+        // ============================================================
+        // 7. MULTI-LANGUAGE SWITCHER ENGINE (FA, EN, FR, DE, NL)
+        // ============================================================
+        let currentSiteLang = 'FA';
+        const langOrder = ['FA', 'EN', 'FR', 'DE', 'NL'];
+
+        const siteTranslations = {
+            FA: {
+                code: 'FA',
+                name: 'فارسی',
+                mobileTag: 'FA · فارسی',
+                dir: 'rtl',
+                brandSub: 'هایپرمارکت آنلاین ایرانی در اروپا',
+                searchPlaceholder: 'جستجوی برنج طارم، زعفران قائنات، گز اصفهان، کشک، سبزی خشک...',
+                searchBtn: 'جستجو',
+                loginText: 'ورود / حساب',
+                cartText: 'سبد خرید',
+                allCatsBtn: 'دسته‌بندی‌ها',
+                allCatsSub: 'همه دسته‌ها و زیردسته‌ها',
+                notice: 'زبان وب‌سایت به فارسی (FA) تغییر یافت.'
+            },
+            EN: {
+                code: 'EN',
+                name: 'English',
+                mobileTag: 'EN · English',
+                dir: 'rtl',
+                brandSub: 'Persian Online Hypermarket in Europe',
+                searchPlaceholder: 'Search Tarom Rice, Saffron, Gaz, Kashk, Dried Herbs...',
+                searchBtn: 'Search',
+                loginText: 'Sign In / Account',
+                cartText: 'Cart',
+                allCatsBtn: 'Categories',
+                allCatsSub: 'All Categories & Subcategories',
+                notice: 'Language switched to English (EN).'
+            },
+            FR: {
+                code: 'FR',
+                name: 'Français',
+                mobileTag: 'FR · Français',
+                dir: 'rtl',
+                brandSub: 'Hypermarché Iranien en Ligne en Europe',
+                searchPlaceholder: 'Rechercher riz Tarom, safran, pistaches, gaz, herbes...',
+                searchBtn: 'Chercher',
+                loginText: 'Connexion / Compte',
+                cartText: 'Panier',
+                allCatsBtn: 'Catégories',
+                allCatsSub: 'Toutes les catégories',
+                notice: 'Langue changée en Français (FR).'
+            },
+            DE: {
+                code: 'DE',
+                name: 'Deutsch',
+                mobileTag: 'DE · Deutsch',
+                dir: 'rtl',
+                brandSub: 'Persischer Online-Supermarkt in Europa',
+                searchPlaceholder: 'Suche nach Tarom-Reis, Safran, Pistazien, Gaz, Kräutern...',
+                searchBtn: 'Suchen',
+                loginText: 'Anmelden / Konto',
+                cartText: 'Warenkorb',
+                allCatsBtn: 'Kategorien',
+                allCatsSub: 'Alle Kategorien & Unterkategorien',
+                notice: 'Sprache auf Deutsch (DE) geändert.'
+            },
+            NL: {
+                code: 'NL',
+                name: 'Nederlands',
+                mobileTag: 'NL · Nederlands',
+                dir: 'rtl',
+                brandSub: 'Perzische Online Supermarkt in Europa',
+                searchPlaceholder: 'Zoek Tarom rijst, saffraan, pistachenoten, gaz, kruiden...',
+                searchBtn: 'Zoeken',
+                loginText: 'Inloggen / Account',
+                cartText: 'Winkelwagen',
+                allCatsBtn: 'Categorieën',
+                allCatsSub: 'Alle categorieën & subcategorieën',
+                notice: 'Taal gewijzigd naar Nederlands (NL).'
+            }
+        };
+
+        function toggleLangDropdown(event) {
+            if (event) event.stopPropagation();
+            const menu = document.getElementById('langDropdownMenu');
+            const btn = document.getElementById('langTriggerBtn');
+            if (!menu || !btn) return;
+
+            const isOpen = menu.classList.toggle('is-open');
+            btn.classList.toggle('is-open', isOpen);
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
+
+        function selectSiteLanguage(langCode) {
+            const t = siteTranslations[langCode] || siteTranslations.FA;
+            currentSiteLang = langCode;
+
+            const codeBadge = document.getElementById('currentLangCode');
+            const nameSpan = document.getElementById('currentLangName');
+            const mobileLangLabel = document.getElementById('mobileLangLabel');
+            const brandSub = document.getElementById('brandSubText');
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtnText');
+            const loginText = document.getElementById('loginLinkText');
+            const cartText = document.getElementById('cartBtnText');
+            const navAllCats = document.getElementById('navAllCatsBtnText');
+            const sliderAllCats = document.getElementById('sliderAllCatsBtnText');
+            const sliderAllCatsSub = document.getElementById('sliderAllCatsSubText');
+
+            if (codeBadge) codeBadge.textContent = t.code;
+            if (nameSpan) nameSpan.textContent = t.name;
+            if (mobileLangLabel) mobileLangLabel.textContent = t.mobileTag;
+            if (brandSub) brandSub.textContent = t.brandSub;
+            if (searchInput) searchInput.placeholder = t.searchPlaceholder;
+            if (searchBtn) searchBtn.textContent = t.searchBtn;
+            if (loginText) loginText.textContent = t.loginText;
+            if (cartText) cartText.textContent = t.cartText;
+            if (navAllCats) navAllCats.textContent = t.allCatsBtn;
+            if (sliderAllCats) sliderAllCats.textContent = t.allCatsBtn;
+            if (sliderAllCatsSub) sliderAllCatsSub.textContent = t.allCatsSub;
+
+            document.querySelectorAll('#langDropdownMenu .lang-option-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === langCode);
+            });
+
+            const menu = document.getElementById('langDropdownMenu');
+            const trigger = document.getElementById('langTriggerBtn');
+            if (menu) menu.classList.remove('is-open');
+            if (trigger) {
+                trigger.classList.remove('is-open');
+                trigger.setAttribute('aria-expanded', 'false');
+            }
+
+            notify(t.notice);
+        }
+
+        function cycleMobileLanguage() {
+            const idx = langOrder.indexOf(currentSiteLang);
+            const nextLang = langOrder[(idx + 1) % langOrder.length];
+            selectSiteLanguage(nextLang);
+        }
+
+        document.addEventListener('click', (e) => {
+            const wrap = document.getElementById('langSwitcherWrap');
+            const menu = document.getElementById('langDropdownMenu');
+            const trigger = document.getElementById('langTriggerBtn');
+            if (wrap && menu && menu.classList.contains('is-open') && !wrap.contains(e.target)) {
+                menu.classList.remove('is-open');
+                if (trigger) {
+                    trigger.classList.remove('is-open');
+                    trigger.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
+
+        // ============================================================
+        // 8. ALL CATEGORIES & SUBCATEGORIES MEGA MODAL ENGINE
+        // ============================================================
+        const allStoreCategories = [
+            {
+                id: 'rice-grains',
+                title: 'برنج و غلات اصیل ایرانی',
+                count: '۱۴۲ محصول',
+                badgeClass: 'badge-grain',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V3"/><path d="M12 5c2.5-2.5 5.5-1 5.5 1.5S14.5 9 12 9"/><path d="M12 10c2.5-2.5 5.5-1 5.5 1.5S14.5 14 12 14"/><path d="M12 5c-2.5-2.5-5.5-1-5.5 1.5S9.5 9 12 9"/><path d="M12 10c-2.5-2.5-5.5-1-5.5 1.5S9.5 14 12 14"/></svg>',
+                subcategories: [
+                    { name: 'برنج طارم هاشمی و استخوانی شمال', count: '۴۸' },
+                    { name: 'برنج دودی هیزمی اصیل گیلان', count: '۲۲' },
+                    { name: 'برنج عنبربو خوزستان و نیم‌دانه معطر', count: '۱۹' },
+                    { name: 'حبوبات دستچین (لپه، نخود، لوبیا چیتی و قرمز)', count: '۳۴' },
+                    { name: 'رشته پلویی، رشته آش، بلغور و گندم پوست‌کنده', count: '۱۹' }
+                ]
+            },
+            {
+                id: 'saffron-barberry',
+                title: 'زعفران، زرشک و نبات',
+                count: '۸۸ محصول',
+                badgeClass: 'badge-saffron',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-9"/><path d="M12 13c-4.5 0-7.5-3.5-7.5-7.5 4 0 7.5 3 7.5 7.5z" fill="currentColor" fill-opacity="0.18"/><path d="M12 13c4.5 0 7.5-3.5 7.5-7.5-4 0-7.5 3-7.5 7.5z" fill="currentColor" fill-opacity="0.18"/><path d="M12 13V5"/><circle cx="12" cy="4" r="1.5" fill="currentColor"/></svg>',
+                subcategories: [
+                    { name: 'زعفران سوپرنگین و سرگل صادراتی قائنات', count: '۳۱' },
+                    { name: 'زرشک پفکی و دانه‌اناری اعلای خراسان', count: '۱۸' },
+                    { name: 'شاخه نبات، پرده نبات و نبات چوبی زعفرانی', count: '۱۶' },
+                    { name: 'هل سبز اکبر بنفش و اسپری زعفران', count: '۱۲' },
+                    { name: 'خلال پسته قزوین و خلال بادام و نارنج', count: '۱۱' }
+                ]
+            },
+            {
+                id: 'nuts-driedfruit',
+                title: 'پسته و آجیل دستچین',
+                count: '۹۵ محصول',
+                badgeClass: 'badge-nuts',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-4.5 0-8 4-8 8.5 0 5 4.5 9.5 8 9.5s8-4.5 8-9.5C20 7 16.5 3 12 3z"/><path d="M12 3c2 2.5 3 5.5 3 8.5s-1 6-3 9.5"/><circle cx="13" cy="11" r="2" fill="currentColor" fill-opacity="0.25"/></svg>',
+                subcategories: [
+                    { name: 'پسته اکبری، احمدآقایی و کله‌قوچی زعفرانی', count: '۲۸' },
+                    { name: 'آجیل چهارمغز شور، شیرین و آجیل مشکل‌گشا', count: '۲۱' },
+                    { name: 'تخمه ژاپنی (جابانی)، کدو گوشتی و آفتابگردان', count: '۱۷' },
+                    { name: 'انجیر خشک پرک استهبان، توت خشک و مویز', count: '۱۵' },
+                    { name: 'برگه زردآلو، آلو بخارا، قیسی و گردو تویسرکان', count: '۱۴' }
+                ]
+            },
+            {
+                id: 'gaz-sweets',
+                title: 'گز، سوهان و شیرینی سنتی',
+                count: '۶۴ محصول',
+                badgeClass: 'badge-sweets',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2.5" transform="rotate(45 12 12)" fill="currentColor" fill-opacity="0.2"/><path d="M4 12l-2-2.5v5L4 12zm16 0l2-2.5v5l-2-2.5z"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/></svg>',
+                subcategories: [
+                    { name: 'گز لقمه‌ای و آردی پسته و بادام کرمانی اصفهان', count: '۲۲' },
+                    { name: 'سوهان عسلی، تخته‌ای و لقمه‌ای کره‌ای قم', count: '۱۶' },
+                    { name: 'باقلوا لوزی، قطاب، پشمک و حاجی بادام یزد', count: '۱۲' },
+                    { name: 'نوقا گردویی تبریز، راحت‌الحلقوم و باسلوق', count: '۸' },
+                    { name: 'کلوچه سنتی فومن و لاهیجان، مسقطی لاری', count: '۶' }
+                ]
+            },
+            {
+                id: 'tea-herbal',
+                title: 'چای لاهیجان و دمنوش‌ها',
+                count: '۵۸ محصول',
+                badgeClass: 'badge-saffron',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>',
+                subcategories: [
+                    { name: 'چای سیاه سرگل بهاره و قلم ممتاز لاهیجان', count: '۱۹' },
+                    { name: 'چای عطری ارل‌گری، چای هل‌دار و دارچینی', count: '۱۴' },
+                    { name: 'گل گاوزبان ایرانی، بهارنارنج و غنچه گل محمدی', count: '۱۲' },
+                    { name: 'دمنوش بابونه، آویشن کوهی، پونه و اسطوخودوس', count: '۸' },
+                    { name: 'قند شکسته سنتی، کله‌قند و شکر پنیر بجنورد', count: '۵' }
+                ]
+            },
+            {
+                id: 'pickles-olives',
+                title: 'ترشیجات و خیارشور ممتاز',
+                count: '۵۳ محصول',
+                badgeClass: 'badge-pickles',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="7" width="13" height="14" rx="3.5" fill="currentColor" fill-opacity="0.12"/><path d="M8 7V4h8v3"/><line x1="7" y1="4" x2="17" y2="4"/><line x1="9" y1="12" x2="15" y2="12"/><circle cx="12" cy="15.5" r="1.5" fill="currentColor"/></svg>',
+                subcategories: [
+                    { name: 'خیارشور ویژه، نول و سوپر ویژه ترد نمکی', count: '۱۵' },
+                    { name: 'ترشی مخلوط، لیته بادمجان و هفت‌بیجار گیلان', count: '۱۴' },
+                    { name: 'سیر ترشی کهنه هفت‌ساله و سیر مروارید', count: '۹' },
+                    { name: 'زیتون پرورده ممتاز رودبار و زیتون بی‌هسته', count: '۸' },
+                    { name: 'ترشی انبه جنوب، ترشی بندری و فلفل کبابی', count: '۷' }
+                ]
+            },
+            {
+                id: 'dairy-cold',
+                title: 'کشک و لبنیات محلی (پک سرد)',
+                count: '۳۸ محصول',
+                badgeClass: 'badge-dairy',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8v3l2 3v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8l2-3V2z" fill="currentColor" fill-opacity="0.15"/><line x1="8" y1="5" x2="16" y2="5"/><line x1="6" y1="11" x2="18" y2="11"/><circle cx="12" cy="15.5" r="2" fill="currentColor"/></svg>',
+                subcategories: [
+                    { name: 'کشک مایع پاستوریزه سمیه و کشک خشک محلی', count: '۱۲' },
+                    { name: 'پنیر لیقوان اصل تبریز و پنیر سفید ایرانی', count: '۹' },
+                    { name: 'دوغ گازدار سنتی، دوغ نعنایی و کفیر', count: '۷' },
+                    { name: 'کره محلی گاوی و گوسفندی و سرشیر سنتی', count: '۵' },
+                    { name: 'ماست موسیر چکیده و خامه صبحانه (ارسال با یخ خشک)', count: '۵' }
+                ]
+            },
+            {
+                id: 'herbs-fried',
+                title: 'سبزیجات سرخ‌شده و خشک',
+                count: '۴۴ محصول',
+                badgeClass: 'badge-herbs',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V5"/><path d="M12 7c-3-3-7-2-8 2 3 3 7 1 8-2z" fill="currentColor" fill-opacity="0.2"/><path d="M12 12c3-3 7-2 8 2-3 3-7 1-8-2z" fill="currentColor" fill-opacity="0.2"/></svg>',
+                subcategories: [
+                    { name: 'سبزی قورمه‌سبزی سرخ‌شده خانگی و سنتی', count: '۱۴' },
+                    { name: 'سبزی آش، سبزی کوکو، سبزی پلویی و دلمه', count: '۱۱' },
+                    { name: 'پیاز داغ مجلسی خلالی، سیر داغ و نعناع داغ', count: '۸' },
+                    { name: 'سبزی خشک معطر (شنبلیله، ترخون، مرزه، شوید)', count: '۶' },
+                    { name: 'بادمجان سرخ‌شده و بادمجان کبابی آماده میرزاقاسمی', count: '۵' }
+                ]
+            },
+            {
+                id: 'canned-ready',
+                title: 'کنسرو و غذاهای آماده',
+                count: '۳۶ محصول',
+                badgeClass: 'badge-canned',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18"/><path d="M4 15a8 8 0 0 1 16 0z" fill="currentColor" fill-opacity="0.16"/><circle cx="12" cy="5.5" r="1.5" fill="currentColor"/><line x1="2" y1="21" x2="22" y2="21"/></svg>',
+                subcategories: [
+                    { name: 'کنسرو خورشت قورمه‌سبزی، قیمه و فسنجان', count: '۱۱' },
+                    { name: 'حلیم گندم، آش رشته، شله‌زرد و عدسی آماده', count: '۸' },
+                    { name: 'تن ماهی در روغن زیتون و فیله ماهی دودی', count: '۷' },
+                    { name: 'خوراک لوبیا چیتی با قارچ، باقلا و نخودآب', count: '۵' },
+                    { name: 'دلمه برگ مو، کوفته تبریزی و مایه ماکارونی', count: '۵' }
+                ]
+            },
+            {
+                id: 'rosewater-distillates',
+                title: 'گلاب و عرقیات کاشان',
+                count: '۴۸ محصول',
+                badgeClass: 'badge-herbs',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
+                subcategories: [
+                    { name: 'گلاب دوآتشه و سنگین قمصر کاشان (بطری شیشه‌ای)', count: '۱۴' },
+                    { name: 'عرق نعناع، عرق کاسنی و عرق شاه‌تره خالص', count: '۱۲' },
+                    { name: 'عرق بیدمشک، بهارنارنج، نسترن و هل', count: '۹' },
+                    { name: 'آبلیمو طبیعی شیراز و آبغوره عسگری بی‌نمک', count: '۷' },
+                    { name: 'سرکه سیب خانگی، سرکه انگور و سرکه بالزامیک', count: '۶' }
+                ]
+            },
+            {
+                id: 'halva-tahini-dates',
+                title: 'حلواشکری، ارده، شیره و خرما',
+                count: '۴۱ محصول',
+                badgeClass: 'badge-grain',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V6a5 5 0 0 1 10 0v2"/></svg>',
+                subcategories: [
+                    { name: 'حلواشکری ممتاز پسته‌ای عقاب و اردکان یزد', count: '۱۱' },
+                    { name: 'ارده خالص کنجد بو داده و کرم کنجد شکلاتی', count: '۸' },
+                    { name: 'شیره انگور ملایر، شیره خرما، توت و سه‌شیره', count: '۸' },
+                    { name: 'خرما مضافتی بم، پیارم حاجی‌آباد و کبکاب', count: '۸' },
+                    { name: 'عسل طبیعی گون، کنار، بهارنارنج و چهل‌گیاه', count: '۶' }
+                ]
+            },
+            {
+                id: 'snacks-spices',
+                title: 'تنقلات، لواشک، ترشک و ادویه',
+                count: '۱۱۷ محصول',
+                badgeClass: 'badge-snacks',
+                iconSvg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8" fill="currentColor" fill-opacity="0.15"/><path d="M10 3l2 2 2-2"/><circle cx="9.5" cy="12" r="1.5" fill="currentColor"/><circle cx="14.5" cy="11.5" r="1.5" fill="currentColor"/><circle cx="12" cy="15.5" r="1.5" fill="currentColor"/></svg>',
+                subcategories: [
+                    { name: 'لواشک پذیرایی، رولی و ورقی زردآلو، انار و آلو', count: '۲۹' },
+                    { name: 'ترشک زغال‌اخته، آلبالو، انار و هفت‌میوه ملس', count: '۲۲' },
+                    { name: 'رب انار ملس و ترش ساوه و رب آلوچه محلی', count: '۱۹' },
+                    { name: 'ادویه کاری، خورشتی، پلویی، فلافل و آبادانی', count: '۲۶' },
+                    { name: 'سماق قرمز تبریز، لیموعمانی، گلپر و زردچوبه اعلا', count: '۲۱' }
+                ]
+            }
+        ];
+
+        let activeModalCategoryId = 'all';
+
+        function renderAllCategoriesModal(filterQuery = '', categoryFilterId = activeModalCategoryId) {
+            const sidebarEl = document.getElementById('allCatsSidebar');
+            const mainEl = document.getElementById('allCatsMainContent');
+            if (!sidebarEl || !mainEl) return;
+
+            const q = (filterQuery || '').trim().toLowerCase();
+
+            // Render Sidebar
+            let sidebarHtml = `
+                <button type="button" class="all-cats-side-item ${categoryFilterId === 'all' ? 'active' : ''}" onclick="selectModalCategoryFilter('all')">
+                    <span class="all-cats-side-name">
+                        <span class="all-cats-side-dot"></span>
+                        <span>همه دسته‌بندی‌ها</span>
+                    </span>
+                    <span class="all-cats-side-count">۱۲ دسته</span>
+                </button>
+            `;
+            allStoreCategories.forEach(cat => {
+                const isActive = categoryFilterId === cat.id;
+                sidebarHtml += `
+                    <button type="button" class="all-cats-side-item ${isActive ? 'active' : ''}" onclick="selectModalCategoryFilter('${cat.id}')">
+                        <span class="all-cats-side-name">
+                            <span class="all-cats-side-dot"></span>
+                            <span>${cat.title}</span>
+                        </span>
+                        <span class="all-cats-side-count">${cat.subcategories.length} زیردسته</span>
+                    </button>
+                `;
+            });
+            sidebarEl.innerHTML = sidebarHtml;
+
+            // Filter Categories & Subcategories
+            const filteredCats = allStoreCategories.filter(cat => {
+                if (categoryFilterId !== 'all' && cat.id !== categoryFilterId) return false;
+                if (!q) return true;
+                const matchTitle = cat.title.toLowerCase().includes(q);
+                const matchSub = cat.subcategories.some(s => s.name.toLowerCase().includes(q));
+                return matchTitle || matchSub;
+            });
+
+            if (filteredCats.length === 0) {
+                mainEl.innerHTML = `
+                    <div style="text-align:center; padding: 60px 20px; color: #64748b;">
+                        <p style="font-size: 16px; font-weight: 700; color: #0f172a; margin-bottom: 8px;">دسته‌بندی یا زیردسته‌ای با عبارت «${filterQuery}» یافت نشد.</p>
+                        <p style="font-size: 13px;">لطفاً عبارت دیگری جستجو کنید یا از ستون سمت راست «همه دسته‌بندی‌ها» را انتخاب نمایید.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let gridHtml = '<div class="all-cats-grid">';
+            filteredCats.forEach(cat => {
+                const subsToShow = q
+                    ? cat.subcategories.filter(s => s.name.toLowerCase().includes(q) || cat.title.toLowerCase().includes(q))
+                    : cat.subcategories;
+
+                const subItemsHtml = subsToShow.map(sub => {
+                    const safeSub = sub.name.replace(/'/g, "\\'");
+                    const safeCat = cat.title.replace(/'/g, "\\'");
+                    return `
+                        <li class="subcat-item">
+                            <a href="#bestsellers" class="subcat-link" onclick="selectSubcategoryFromModal('${safeCat}', '${safeSub}'); return false;">
+                                <span class="subcat-link-left">
+                                    <span class="subcat-bullet"></span>
+                                    <span>${sub.name}</span>
+                                </span>
+                                <span class="subcat-count-tag">${sub.count} کالا</span>
+                            </a>
+                        </li>
+                    `;
+                }).join('');
+
+                const safeCatTitle = cat.title.replace(/'/g, "\\'");
+                gridHtml += `
+                    <div class="all-cat-group-card" id="modal-cat-${cat.id}">
+                        <div class="all-cat-group-head">
+                            <div class="all-cat-group-title-wrap">
+                                <div class="all-cat-group-badge ${cat.badgeClass}" aria-hidden="true">${cat.iconSvg}</div>
+                                <div>
+                                    <h3 class="all-cat-group-title">${cat.title}</h3>
+                                    <span class="all-cat-group-meta">${cat.count} · ${cat.subcategories.length} زیردسته تخصصی</span>
+                                </div>
+                            </div>
+                            <button type="button" class="all-cat-view-all" onclick="selectSubcategoryFromModal('${safeCatTitle}', 'همه کالاهای ${safeCatTitle}')">
+                                <span>مشاهده همه ←</span>
+                            </button>
+                        </div>
+                        <ul class="subcat-list">
+                            ${subItemsHtml}
+                        </ul>
+                    </div>
+                `;
+            });
+            gridHtml += '</div>';
+            mainEl.innerHTML = gridHtml;
+        }
+
+        function selectModalCategoryFilter(catId) {
+            activeModalCategoryId = catId;
+            const searchInp = document.getElementById('catModalSearchInput');
+            const q = searchInp ? searchInp.value : '';
+            renderAllCategoriesModal(q, catId);
+        }
+
+        function filterAllCategoriesModal(query) {
+            renderAllCategoriesModal(query, activeModalCategoryId);
+        }
+
+        function toggleAllCategoriesModal(show, initialCatId = 'all') {
+            const overlay = document.getElementById('allCategoriesModalOverlay');
+            if (!overlay) return;
+
+            if (show) {
+                activeModalCategoryId = initialCatId || 'all';
+                const searchInp = document.getElementById('catModalSearchInput');
+                if (searchInp) searchInp.value = '';
+                renderAllCategoriesModal('', activeModalCategoryId);
+                overlay.classList.add('active');
+                overlay.setAttribute('aria-hidden', 'false');
+            } else {
+                overlay.classList.remove('active', 'auto-entry-mode');
+                overlay.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        function handleAllCatsModalBackdrop(event) {
+            if (event.target === document.getElementById('allCategoriesModalOverlay')) {
+                toggleAllCategoriesModal(false);
+            }
+        }
+
+        function selectSubcategoryFromModal(catTitle, subTitle) {
+            toggleAllCategoriesModal(false);
+            notify(`زیردسته «${subTitle}» از بخش «${catTitle}» انتخاب شد.`);
+            const target = document.getElementById('bestsellers');
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Global Escape Key Handler for Modals & Dropdowns
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLocationModal();
+                toggleAllCategoriesModal(false);
+                const menu = document.getElementById('langDropdownMenu');
+                if (menu) menu.classList.remove('is-open');
+            }
+        });
+
         // Initial Page Boot
         updateStickyHeader();
         updateBestsellersSticky();
@@ -7430,6 +9513,14 @@
         updateWeightUI();
         runCalc();
         refreshCartView();
+        renderAllCategoriesModal();
+
+        // Show IP Location Detection Modal on User Entry (France Default via IP)
+        setTimeout(() => {
+            if (window.scrollY < 80) {
+                openLocationModal('auto');
+            }
+        }, 350);
 
     </script>
 </body>
