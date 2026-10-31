@@ -4266,13 +4266,18 @@
             align-items: center;
             gap: 8px;
             overflow-x: auto;
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
             scrollbar-width: none;
             -ms-overflow-style: none;
             padding: 2px 2px;
             flex: 1;
             min-width: 0;
+            position: relative;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .prod-color-pills.is-dragging {
+            cursor: grabbing;
         }
 
         .prod-color-pills::-webkit-scrollbar {
@@ -4295,7 +4300,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            scroll-snap-align: start;
             white-space: nowrap;
             transition: background-color 150ms ease, border-color 150ms ease, transform 150ms ease;
         }
@@ -4328,24 +4332,41 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 5px;
-            margin-top: 4px;
+            gap: 8px;
+            margin-top: 8px;
+            padding: 4px 0;
+            user-select: none;
         }
 
         .prod-color-dot {
-            width: 6px;
-            height: 6px;
+            display: inline-block;
+            width: 9px;
+            height: 9px;
             border-radius: var(--radius-full);
             background-color: #cbd5e1;
             border: none;
             padding: 0;
             cursor: pointer;
-            transition: width 180ms ease, background-color 180ms ease;
+            position: relative;
+            flex-shrink: 0;
+            transition: width 220ms cubic-bezier(0.34, 1.56, 0.64, 1), background-color 180ms ease, transform 150ms ease;
+        }
+
+        .prod-color-dot::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+        }
+
+        .prod-color-dot:hover {
+            background-color: #94a3b8;
+            transform: scale(1.15);
         }
 
         .prod-color-dot.active {
-            width: 18px;
+            width: 26px;
             background-color: var(--color-primary);
+            transform: none;
         }
 
         .prod-opt-footer {
@@ -7778,13 +7799,13 @@
                         </button>
                     </div>
                     <div class="prod-color-dots" id="prodColorDots" aria-label="نشانگر اسلایدر رنگ">
-                        <span class="prod-color-dot active" onclick="selectProdOption('color', 0)" title="رنگ ۱"></span>
-                        <span class="prod-color-dot" onclick="selectProdOption('color', 1)" title="رنگ ۲"></span>
-                        <span class="prod-color-dot" onclick="selectProdOption('color', 2)" title="رنگ ۳"></span>
-                        <span class="prod-color-dot" onclick="selectProdOption('color', 3)" title="رنگ ۴"></span>
-                        <span class="prod-color-dot" onclick="selectProdOption('color', 4)" title="رنگ ۵"></span>
-                        <span class="prod-color-dot" onclick="selectProdOption('color', 5)" title="رنگ ۶"></span>
-                        <span class="prod-color-dot" onclick="selectProdOption('color', 6)" title="رنگ ۷"></span>
+                        <span class="prod-color-dot active" data-idx="0" role="button" tabindex="0" aria-label="رنگ ۱: سبز زمردی" onclick="selectProdOption('color', 0)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectProdOption('color', 0);}" title="سبز زمردی"></span>
+                        <span class="prod-color-dot" data-idx="1" role="button" tabindex="0" aria-label="رنگ ۲: طلایی زعفرانی" onclick="selectProdOption('color', 1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectProdOption('color', 1);}" title="طلایی زعفرانی"></span>
+                        <span class="prod-color-dot" data-idx="2" role="button" tabindex="0" aria-label="رنگ ۳: قرمز یاقوتی" onclick="selectProdOption('color', 2)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectProdOption('color', 2);}" title="قرمز یاقوتی"></span>
+                        <span class="prod-color-dot" data-idx="3" role="button" tabindex="0" aria-label="رنگ ۴: سرمه‌ای سلطنتی" onclick="selectProdOption('color', 3)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectProdOption('color', 3);}" title="سرمه‌ای سلطنتی"></span>
+                        <span class="prod-color-dot" data-idx="4" role="button" tabindex="0" aria-label="رنگ ۵: فیروزه‌ای نیشابور" onclick="selectProdOption('color', 4)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectProdOption('color', 4);}" title="فیروزه‌ای نیشابور"></span>
+                        <span class="prod-color-dot" data-idx="5" role="button" tabindex="0" aria-label="رنگ ۶: زرشکی خراسان" onclick="selectProdOption('color', 5)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectProdOption('color', 5);}" title="زرشکی خراسان"></span>
+                        <span class="prod-color-dot" data-idx="6" role="button" tabindex="0" aria-label="رنگ ۷: مسی سنتی" onclick="selectProdOption('color', 6)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectProdOption('color', 6);}" title="مسی سنتی"></span>
                     </div>
                 </div>
 
@@ -7902,10 +7923,122 @@
             { label: 'مسی سنتی' }
         ];
 
-        function slideProdColorTrack(direction) {
+        let prodColorRafId = null;
+        let prodColorTargetScroll = 0;
+        let isProgrammaticColorScroll = false;
+
+        function scrollProdColorToIndex(idx, instant = false) {
             const track = document.getElementById('prodColorPills');
             if (!track) return;
-            track.scrollBy({ left: direction * 150, behavior: 'smooth' });
+            const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+            const total = prodColorOptions.length;
+            const ratio = total > 1 ? (idx / (total - 1)) : 0;
+            const targetLeft = Math.round(-(ratio * maxScroll));
+            prodColorTargetScroll = targetLeft;
+
+            if (prodColorRafId) {
+                cancelAnimationFrame(prodColorRafId);
+                prodColorRafId = null;
+            }
+
+            if (instant || maxScroll <= 0) {
+                isProgrammaticColorScroll = true;
+                track.scrollLeft = targetLeft;
+                setTimeout(() => { isProgrammaticColorScroll = false; }, 50);
+                return;
+            }
+
+            isProgrammaticColorScroll = true;
+            function stepAnim() {
+                const current = track.scrollLeft;
+                const diff = prodColorTargetScroll - current;
+                if (Math.abs(diff) > 1.5) {
+                    const delta = Math.sign(diff) * Math.max(1.5, Math.abs(diff * 0.28));
+                    track.scrollLeft = current + delta;
+                    if (Math.abs(track.scrollLeft - current) < 0.5) {
+                        track.scrollLeft = prodColorTargetScroll;
+                        prodColorRafId = null;
+                        setTimeout(() => { isProgrammaticColorScroll = false; }, 40);
+                    } else {
+                        prodColorRafId = requestAnimationFrame(stepAnim);
+                    }
+                } else {
+                    track.scrollLeft = prodColorTargetScroll;
+                    prodColorRafId = null;
+                    setTimeout(() => { isProgrammaticColorScroll = false; }, 40);
+                }
+            }
+            prodColorRafId = requestAnimationFrame(stepAnim);
+        }
+
+        function slideProdColorTrack(direction) {
+            // In RTL: direction = 1 (right button) moves to previous color; direction = -1 (left button) moves to next color
+            const step = direction > 0 ? -1 : 1;
+            const nextIdx = Math.min(prodColorOptions.length - 1, Math.max(0, pendingProductSelection.colorIdx + step));
+            selectProdOption('color', nextIdx);
+        }
+
+        function initProdColorSliderSync() {
+            const track = document.getElementById('prodColorPills');
+            if (!track || track.dataset.syncAttached === 'true') return;
+            track.dataset.syncAttached = 'true';
+
+            let isDragging = false;
+            let hasMoved = false;
+            let startX = 0;
+            let startScroll = 0;
+
+            track.addEventListener('scroll', () => {
+                if (isProgrammaticColorScroll) return;
+                const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+                if (maxScroll <= 0) return;
+                const progress = Math.min(1, Math.max(0, Math.abs(track.scrollLeft) / maxScroll));
+                const nearestIdx = Math.min(prodColorOptions.length - 1, Math.max(0, Math.round(progress * (prodColorOptions.length - 1))));
+                if (pendingProductSelection.colorIdx !== nearestIdx) {
+                    pendingProductSelection.colorIdx = nearestIdx;
+                    updateProductOptionsModalUI(false);
+                }
+            }, { passive: true });
+
+            track.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                isDragging = true;
+                hasMoved = false;
+                startX = e.pageX;
+                startScroll = track.scrollLeft;
+                if (prodColorRafId) {
+                    cancelAnimationFrame(prodColorRafId);
+                    prodColorRafId = null;
+                }
+                isProgrammaticColorScroll = false;
+                track.classList.add('is-dragging');
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const dx = e.pageX - startX;
+                if (Math.abs(dx) > 5) {
+                    hasMoved = true;
+                }
+                if (!hasMoved) return;
+                const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+                const nextScroll = Math.max(-maxScroll, Math.min(0, startScroll - dx));
+                track.scrollLeft = nextScroll;
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (!isDragging) return;
+                isDragging = false;
+                track.classList.remove('is-dragging');
+            });
+
+            track.addEventListener('click', (e) => {
+                if (hasMoved) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    hasMoved = false;
+                }
+            }, true);
         }
 
         let pendingProductSelection = {
@@ -7938,20 +8071,21 @@
                 thumbEl.alt = name;
             }
 
-            updateProductOptionsModalUI();
-
             const overlay = document.getElementById('productOptionsModalOverlay');
             if (overlay) {
                 overlay.classList.add('active');
                 overlay.setAttribute('aria-hidden', 'false');
             }
+
+            initProdColorSliderSync();
+            updateProductOptionsModalUI(true, true);
         }
 
         function selectProdOption(type, idx) {
             if (type === 'weight') pendingProductSelection.weightIdx = idx;
             else if (type === 'size') pendingProductSelection.sizeIdx = idx;
             else if (type === 'color') pendingProductSelection.colorIdx = idx;
-            updateProductOptionsModalUI();
+            updateProductOptionsModalUI(type === 'color', false);
         }
 
         function getCalculatedOptionPrice() {
@@ -7961,7 +8095,7 @@
             return Math.max(0.5, parseFloat(raw.toFixed(2)));
         }
 
-        function updateProductOptionsModalUI() {
+        function updateProductOptionsModalUI(shouldScrollColor = true, instantScroll = false) {
             const w = prodWeightOptions[pendingProductSelection.weightIdx] || prodWeightOptions[1];
             const s = prodSizeOptions[pendingProductSelection.sizeIdx] || prodSizeOptions[1];
             const c = prodColorOptions[pendingProductSelection.colorIdx] || prodColorOptions[0];
@@ -7982,15 +8116,15 @@
                 btn.classList.toggle('active', i === pendingProductSelection.sizeIdx);
             });
             document.querySelectorAll('#prodColorPills .prod-color-pill').forEach((btn, i) => {
-                const isActive = (i === pendingProductSelection.colorIdx);
-                btn.classList.toggle('active', isActive);
-                if (isActive) {
-                    btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                }
+                btn.classList.toggle('active', i === pendingProductSelection.colorIdx);
             });
             document.querySelectorAll('#prodColorDots .prod-color-dot').forEach((dot, i) => {
                 dot.classList.toggle('active', i === pendingProductSelection.colorIdx);
             });
+
+            if (shouldScrollColor) {
+                scrollProdColorToIndex(pendingProductSelection.colorIdx, instantScroll);
+            }
 
             const finalPrice = getCalculatedOptionPrice();
             if (priceEl) {
