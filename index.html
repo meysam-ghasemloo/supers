@@ -1086,7 +1086,7 @@
             white-space: nowrap;
         }
 
-        /* 5. FLASH DEALS (RUBY RED / قرمز ارغوانی) — SCROLLYTELLING */
+        /* 5. FLASH DEALS (RUBY RED / قرمز ارغوانی) - SCROLLYTELLING */
         .feed-scrolly-section {
             width: 100%;
             position: relative;
@@ -3689,11 +3689,13 @@
             line-height: 1.3;
         }
 
-        /* 3. Location Detection & Country Switcher Modal */
+        /* 3. Location Detection & Country Switcher Modal (Centered with Blurred Backdrop) */
         .site-modal-overlay {
             position: fixed;
             inset: 0;
-            background-color: rgba(15, 23, 42, 0.62);
+            background-color: rgba(15, 23, 42, 0.58);
+            backdrop-filter: blur(8px); /* taste-skill-ignore */
+            -webkit-backdrop-filter: blur(8px); /* taste-skill-ignore */
             z-index: 2300;
             display: none;
             align-items: center;
@@ -3705,30 +3707,50 @@
             display: flex;
         }
 
-        /* Entry Auto-Mode: sits cleanly on the left/lower side so Hero Headline remains 100% readable */
-        #locationModalOverlay.auto-entry-mode {
-            background-color: transparent;
-            pointer-events: none;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 20px 28px;
-        }
-
-        #locationModalOverlay.auto-entry-mode .location-modal-card {
-            pointer-events: auto;
-            max-width: 460px;
-            max-height: 82vh;
-        }
-
         .location-modal-card {
             background-color: #ffffff;
             border-radius: 22px;
             border: 2px solid #10b981;
             width: 100%;
-            max-width: 540px;
-            max-height: 88vh;
+            max-width: 470px;
+            max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 24px 54px -10px rgba(6, 78, 59, 0.38); /* taste-skill-ignore */
+            box-shadow: 0 28px 60px -12px rgba(6, 78, 59, 0.45); /* taste-skill-ignore */
+        }
+
+        .modal-lang-box-wrap {
+            background-color: #f8fafc;
+            border: 1.5px solid var(--color-border);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .modal-lang-en-text {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #334155;
+            font-weight: 600;
+            text-align: left;
+            direction: ltr;
+        }
+
+        .modal-lang-en-text strong {
+            color: var(--color-primary);
+            font-weight: 800;
+        }
+
+        .loc-select-input.lang-select-ltr {
+            direction: ltr;
+            text-align: left;
+            padding: 0 38px 0 14px;
+        }
+
+        .loc-select-arrow.lang-arrow-right {
+            left: auto;
+            right: 12px;
         }
 
         .location-modal-hero {
@@ -5714,25 +5736,11 @@
                 </div>
             </div>
 
-            <!-- Categories Slider Track with Desktop-Only "دسته‌بندی‌ها" Button Before Slider -->
-            <div class="cats-slider-desktop-layout">
-                <button type="button" class="cats-slider-lead-btn" id="btnAllCatsSliderLead" onclick="toggleAllCategoriesModal(true)" aria-haspopup="dialog" aria-controls="allCategoriesModalOverlay" title="مشاهده تمام دسته‌بندی‌ها و زیردسته‌ها" data-ui>
-                    <div class="lead-btn-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
-                            <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
-                            <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
-                            <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
-                        </svg>
-                    </div>
-                    <span class="lead-btn-title" id="sliderAllCatsBtnText">دسته‌بندی‌ها</span>
-                    <span class="lead-btn-sub" id="sliderAllCatsSubText">همه دسته‌ها و زیردسته‌ها</span>
-                </button>
-
-                <div class="slider-scroll-wrap" id="catsWrap">
-                    <div class="slider-fade-cue slider-fade-start" aria-hidden="true"></div>
-                    <div class="slider-fade-cue slider-fade-end" aria-hidden="true"></div>
-                    <div class="cats-slider-track" id="catsTrack" data-ui="slider">
+            <!-- Categories Slider Track with Overflow Cues -->
+            <div class="slider-scroll-wrap" id="catsWrap">
+                <div class="slider-fade-cue slider-fade-start" aria-hidden="true"></div>
+                <div class="slider-fade-cue slider-fade-end" aria-hidden="true"></div>
+                <div class="cats-slider-track" id="catsTrack" data-ui="slider">
                 <a href="#" class="cat-slide-item">
                     <div class="cat-icon-badge badge-grain" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -5887,7 +5895,6 @@
                         <span class="cat-slide-count">۳۸ محصول</span>
                     </div>
                 </a>
-                    </div>
                 </div>
             </div>
             <div class="slider-dots-row" id="catsDots" aria-label="صفحات دسته‌بندی"></div>
@@ -7202,7 +7209,7 @@
         </button>
     </nav>
 
-    <!-- 14. IP LOCATION DETECTION & COUNTRY SWITCHER MODAL -->
+    <!-- 14. IP LOCATION DETECTION & LANGUAGE MODAL (CENTERED WITH BLURRED BACKDROP) -->
     <div class="site-modal-overlay" id="locationModalOverlay" onclick="handleLocationModalBackdrop(event)" data-ui aria-hidden="true">
         <div class="location-modal-card" role="dialog" aria-modal="true" aria-labelledby="locationModalTitle">
             <div class="location-modal-hero">
@@ -7211,121 +7218,70 @@
                 </button>
                 <div class="ip-detect-badge">
                     <span class="ip-pulse-dot" aria-hidden="true"></span>
-                    <span>تشخیص خودکار موقعیت جغرافیایی (IP: Europe / FR)</span>
+                    <span>IP Location: France (FR)</span>
                 </div>
-                <h2 class="location-modal-title" id="locationModalTitle">لوکیشن شما روی فرانسه تنظیم شد</h2>
-                <p class="location-modal-subtitle">محاسبه خودکار تعرفه پستی، زمان تحویل اکسپرس و سقف ارسال رایگان بر اساس کشور مقصد شما</p>
+                <h2 class="location-modal-title" id="locationModalTitle">انتخاب کشور مقصد و زبان سایت</h2>
             </div>
 
             <div class="location-modal-body">
+                <!-- Single Concise IP Location Explanation -->
                 <div class="ip-detected-notice">
                     <div class="ip-notice-icon" aria-hidden="true">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                             <circle cx="12" cy="10" r="3"></circle>
                         </svg>
                     </div>
                     <div class="ip-notice-text" id="locationModalNoticeText">
-                        لوکیشن شما از روی <strong>IP</strong> به صورت پیش‌فرض روی <strong>فرانسه (France)</strong> قرار داده شده است. برای تغییر کشور مقصد، از منوی زیر یکی را انتخاب کنید:
+                        لوکیشن شما از روی <strong>IP</strong> روی <strong>فرانسه (France)</strong> انتخاب شده است؛ در صورت تمایل به تغییر، از منوی زیر کشور خود را انتخاب کنید:
                     </div>
                 </div>
 
+                <!-- Country Selection Dropdown Box -->
                 <div>
                     <label class="loc-field-label" for="modalCountrySelect">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        <span>انتخاب کشور مقصد از منوی زیر:</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        <span>کشور مقصد ارسال (Delivery Country):</span>
                     </label>
                     <div class="loc-select-wrap">
                         <select class="loc-select-input" id="modalCountrySelect" onchange="previewLocationSelection(this.value)">
-                            <option value="FR" selected>فرانسه (France) - پاریس و سراسر فرانسه (پیش‌فرض IP)</option>
-                            <option value="DE">آلمان (Germany) - برلین، هامبورگ، مونیخ، فرانکفورت</option>
-                            <option value="NL">هلند (Netherlands) - آمستردام، روتردام، لاهه</option>
-                            <option value="BE">بلژیک (Belgium) - بروکسل، آنتورپ، گنت</option>
-                            <option value="IT">ایتالیا (Italy) - رم، میلان، تورین</option>
-                            <option value="AT">اتریش (Austria) - وین، گراتس، لینتس</option>
-                            <option value="CH">سوئیس (Switzerland) - زوریخ، ژنو، برن</option>
-                            <option value="SE">سوئد و اسکاندیناوی (Sweden &amp; Nordic) - استکهلم، گوتنبرگ</option>
+                            <option value="FR" selected>فرانسه (France) - پیش‌فرض IP</option>
+                            <option value="DE">آلمان (Germany)</option>
+                            <option value="NL">هلند (Netherlands)</option>
+                            <option value="BE">بلژیک (Belgium)</option>
+                            <option value="IT">ایتالیا (Italy)</option>
+                            <option value="AT">اتریش (Austria)</option>
+                            <option value="CH">سوئیس (Switzerland)</option>
+                            <option value="SE">سوئد و اسکاندیناوی (Sweden &amp; Nordic)</option>
                         </select>
                         <svg class="loc-select-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </div>
                 </div>
 
-                <!-- Quick Country Cards Grid -->
-                <div class="loc-quick-grid" id="locQuickGrid" role="group" aria-label="انتخاب سریع کشور مقصد">
-                    <button type="button" class="loc-country-card active" data-country="FR" onclick="previewLocationSelection('FR')">
-                        <span class="loc-card-code">FR</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">فرانسه (IP شما)</span>
-                            <span class="loc-card-meta">۲۴ ساعته · بالای ۶۰€ رایگان</span>
-                        </span>
-                    </button>
-                    <button type="button" class="loc-country-card" data-country="DE" onclick="previewLocationSelection('DE')">
-                        <span class="loc-card-code">DE</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">آلمان</span>
-                            <span class="loc-card-meta">۲۴ تا ۴۸ ساعت · بالای ۶۵€ رایگان</span>
-                        </span>
-                    </button>
-                    <button type="button" class="loc-country-card" data-country="NL" onclick="previewLocationSelection('NL')">
-                        <span class="loc-card-code">NL</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">هلند</span>
-                            <span class="loc-card-meta">۲۴ تا ۴۸ ساعت · بالای ۶۵€ رایگان</span>
-                        </span>
-                    </button>
-                    <button type="button" class="loc-country-card" data-country="BE" onclick="previewLocationSelection('BE')">
-                        <span class="loc-card-code">BE</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">بلژیک</span>
-                            <span class="loc-card-meta">۲۴ ساعته · بالای ۶۰€ رایگان</span>
-                        </span>
-                    </button>
-                    <button type="button" class="loc-country-card" data-country="IT" onclick="previewLocationSelection('IT')">
-                        <span class="loc-card-code">IT</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">ایتالیا</span>
-                            <span class="loc-card-meta">۴۸ ساعته · بالای ۷۰€ رایگان</span>
-                        </span>
-                    </button>
-                    <button type="button" class="loc-country-card" data-country="AT" onclick="previewLocationSelection('AT')">
-                        <span class="loc-card-code">AT</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">اتریش</span>
-                            <span class="loc-card-meta">۴۸ ساعته · بالای ۷۰€ رایگان</span>
-                        </span>
-                    </button>
-                    <button type="button" class="loc-country-card" data-country="CH" onclick="previewLocationSelection('CH')">
-                        <span class="loc-card-code">CH</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">سوئیس</span>
-                            <span class="loc-card-meta">۴۸ تا ۷۲ ساعت · بالای ۸۵€ رایگان</span>
-                        </span>
-                    </button>
-                    <button type="button" class="loc-country-card" data-country="SE" onclick="previewLocationSelection('SE')">
-                        <span class="loc-card-code">SE</span>
-                        <span class="loc-card-info">
-                            <span class="loc-card-name">سوئد و نوردیک</span>
-                            <span class="loc-card-meta">۷۲ ساعته · بالای ۹۰€ رایگان</span>
-                        </span>
-                    </button>
-                </div>
-
-                <!-- Live Shipping Summary for Selected Destination -->
-                <div class="loc-selected-summary" id="locSelectedSummary">
-                    <div class="loc-summary-col">
-                        <span class="loc-summary-label" id="locSumCourier">پست اکسپرس: Chronopost / Colissimo</span>
-                        <span class="loc-summary-val" id="locSumTime">تحویل ۲۴ ساعت از انبار پاریس</span>
+                <!-- English Text & Language Selection Box -->
+                <div class="modal-lang-box-wrap">
+                    <p class="modal-lang-en-text">
+                        <strong>Choose your language:</strong> Your location is set to France based on your IP. You can also select your preferred website language below:
+                    </p>
+                    <div class="loc-select-wrap">
+                        <select class="loc-select-input lang-select-ltr" id="modalLanguageSelect" aria-label="Choose your language">
+                            <option value="FA" selected>FA - فارسی (Persian)</option>
+                            <option value="EN">EN - English</option>
+                            <option value="FR">FR - Français</option>
+                            <option value="DE">DE - Deutsch</option>
+                            <option value="NL">NL - Nederlands</option>
+                        </select>
+                        <svg class="loc-select-arrow lang-arrow-right" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </div>
-                    <span class="loc-free-badge" id="locSumFree">ارسال رایگان بالای ۶۰ یورو</span>
                 </div>
 
                 <div class="location-modal-actions">
                     <button type="button" class="btn-loc-confirm" onclick="confirmLocationChange()">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        <span>تایید و ذخیره لوکیشن ارسال</span>
+                        <span>تایید و ادامه / Confirm</span>
                     </button>
                     <button type="button" class="btn-loc-keep" onclick="closeLocationModal()">
-                        <span>ادامه با فرانسه</span>
+                        <span>بستن</span>
                     </button>
                 </div>
             </div>
@@ -8970,20 +8926,21 @@
             if (!overlay) return;
 
             locationModalTriggerMode = mode;
-            overlay.classList.toggle('auto-entry-mode', mode === 'auto');
-            const titleEl = document.getElementById('locationModalTitle');
             const noticeEl = document.getElementById('locationModalNoticeText');
+            const langSelect = document.getElementById('modalLanguageSelect');
             const curMeta = countryLocationMeta[currentDestinationCountry] || countryLocationMeta.FR;
 
+            if (langSelect) {
+                langSelect.value = currentSiteLang;
+            }
+
             if (mode === 'auto') {
-                if (titleEl) titleEl.textContent = 'لوکیشن شما روی فرانسه تنظیم شد';
                 if (noticeEl) {
-                    noticeEl.innerHTML = 'لوکیشن شما از روی <strong>IP</strong> به صورت پیش‌فرض روی <strong>فرانسه (France)</strong> قرار داده شده است. برای تغییر کشور مقصد، از منوی زیر یکی را انتخاب کنید:';
+                    noticeEl.innerHTML = 'لوکیشن شما از روی <strong>IP</strong> روی <strong>فرانسه (France)</strong> انتخاب شده است؛ در صورت تمایل به تغییر، از منوی زیر کشور خود را انتخاب کنید:';
                 }
             } else {
-                if (titleEl) titleEl.textContent = `تغییر کشور مقصد ارسال (فعلی: ${curMeta.shortName})`;
                 if (noticeEl) {
-                    noticeEl.innerHTML = `در حال حاضر موقعیت ارسال شما روی <strong>${curMeta.shortName} (${curMeta.enName})</strong> تنظیم شده است. برای تغییر کشور مقصد، از منوی زیر یکی را انتخاب کنید:`;
+                    noticeEl.innerHTML = `لوکیشن فعلی شما <strong>${curMeta.shortName} (${curMeta.enName})</strong> است؛ در صورت تمایل به تغییر، از منوی زیر کشور خود را انتخاب کنید:`;
                 }
             }
 
@@ -8995,7 +8952,7 @@
         function closeLocationModal() {
             const overlay = document.getElementById('locationModalOverlay');
             if (!overlay) return;
-            overlay.classList.remove('active', 'auto-entry-mode');
+            overlay.classList.remove('active');
             overlay.setAttribute('aria-hidden', 'true');
         }
 
@@ -9010,6 +8967,9 @@
             const chosen = selectEl ? selectEl.value : currentDestinationCountry;
             const meta = countryLocationMeta[chosen] || countryLocationMeta.FR;
 
+            const langSelectEl = document.getElementById('modalLanguageSelect');
+            const chosenLang = langSelectEl ? langSelectEl.value : currentSiteLang;
+
             syncCountryIndicators(chosen);
 
             const calcSelect = document.getElementById('calcSelect');
@@ -9018,17 +8978,14 @@
                 runCalc();
             }
 
-            closeLocationModal();
-            notify(`لوکیشن ارسال به «${meta.shortName}» تغییر یافت (${meta.freeBadge}).`);
-        }
-
-        // Auto-dismiss entry location modal if visitor starts scrolling down without interacting
-        window.addEventListener('scroll', () => {
-            const overlay = document.getElementById('locationModalOverlay');
-            if (overlay && overlay.classList.contains('active') && locationModalTriggerMode === 'auto' && window.scrollY > 40) {
-                closeLocationModal();
+            if (chosenLang && chosenLang !== currentSiteLang) {
+                selectSiteLanguage(chosenLang, false);
             }
-        }, { passive: true });
+
+            closeLocationModal();
+            const langObj = siteTranslations[chosenLang] || siteTranslations.FA;
+            notify(`لوکیشن «${meta.shortName}» و زبان «${langObj.name}» ذخیره شد.`);
+        }
 
         // ============================================================
         // 7. MULTI-LANGUAGE SWITCHER ENGINE (FA, EN, FR, DE, NL)
@@ -9120,9 +9077,13 @@
             btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         }
 
-        function selectSiteLanguage(langCode) {
+        function selectSiteLanguage(langCode, showToast = true) {
             const t = siteTranslations[langCode] || siteTranslations.FA;
             currentSiteLang = langCode;
+            const modalLangSelect = document.getElementById('modalLanguageSelect');
+            if (modalLangSelect && modalLangSelect.value !== langCode) {
+                modalLangSelect.value = langCode;
+            }
 
             const codeBadge = document.getElementById('currentLangCode');
             const nameSpan = document.getElementById('currentLangName');
@@ -9160,7 +9121,7 @@
                 trigger.setAttribute('aria-expanded', 'false');
             }
 
-            notify(t.notice);
+            if (showToast) notify(t.notice);
         }
 
         function cycleMobileLanguage() {
